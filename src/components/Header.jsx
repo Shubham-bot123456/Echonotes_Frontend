@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { CgLogOff } from "react-icons/cg";
 import { BiSolidLeaf } from "react-icons/bi";
-
+import { motion } from "motion/react";
 import { useSelector } from "react-redux";
 
 export default function Header({ setsearch, showSearchAndLogout }) {
@@ -16,7 +16,27 @@ export default function Header({ setsearch, showSearchAndLogout }) {
     <div className="w-full fixed top-0 left-0  flex justify-between px-8 py-4 shadow-lg z-50 bg-white">
       <section className="flex gap-1">
         <h1 className="text-semibold text-lg ">EchoNotes</h1>
-        <BiSolidLeaf className="text-3xl"></BiSolidLeaf>
+        <motion.div
+          // className="bg-green-500"
+          initial={{
+            rotate: 0,
+            scale: 1,
+          }}
+          animate={{
+            scale: [1, 1.05, 1.05, 1, 1],
+            rotate: [0, 0, -20, 20, 0],
+          }}
+          transition={{
+            duration: 2,
+            ease: "easeInOut",
+            delay: 1,
+            repeatDelay: 5,
+            type: "keyframes",
+            repeat: Infinity,
+          }}
+        >
+          <BiSolidLeaf className="text-3xl"></BiSolidLeaf>
+        </motion.div>
       </section>
       {showSearchAndLogout ? (
         <section className="flex gap-4">

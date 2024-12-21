@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { IoIosAdd } from "react-icons/io";
+import Dock from "./Dock.jsx";
 // for now using state uplifting
 export default function UpdateModal({ updateBook, book }) {
   return (
@@ -27,25 +28,7 @@ export default function UpdateModal({ updateBook, book }) {
             defaultValue={book.description}
             onChange={(event) => (book.description = event.target.value)}
           ></textarea>
-          <form>
-            <button>
-              <IoIosAdd
-                className="text-6xl absolute bottom-4 right-5"
-                onClick={() => {
-                  updateBook(book);
-                  document.getElementById(`showModal${book.id}`);
-                  console.log(
-                    "value : " + book.description + " id : " + book.id
-                  );
-                }}
-              >
-                {" "}
-              </IoIosAdd>
-            </button>
-            <button>
-              <IoIosArrowRoundBack className="text-6xl absolute bottom-4 left-4"></IoIosArrowRoundBack>
-            </button>
-          </form>
+          <Dock type="update" updateBook={updateBook} book={book} />{" "}
         </div>
       </dialog>{" "}
     </div>

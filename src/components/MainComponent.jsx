@@ -216,8 +216,8 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
 
               {bookList.map((book) => (
                 <div
-                    id="card"
-                    className={`card card-compact bg-base-100 w-80  h-[120px] shadow-2xl rounded-lg  transition-all ${
+                  id="card"
+                  className={`card card-compact bg-base-100 w-80  h-[120px] shadow-2xl rounded-lg  transition-all ${
                     showPreview ? "blur-sm" : "blur-none"
                   }`}
                   onClick={() => {
@@ -227,16 +227,18 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                   key={book.id}
                 >
                   <div className="card-body ">
-                    <p
-                      className="cursor-pointer"
-
-                    >
+                    <p className="cursor-pointer">
                       {trimDescription(book.description)}
                     </p>
                     <div className="card-actions justify-end">
                       <div className="dropdown ">
                         <div tabIndex={0} className="list-none">
-                          <BsThreeDotsVertical className="text-2xl hover:scale-105" onClick={ (e) =>{e.stopPropagation()}}></BsThreeDotsVertical>
+                          <BsThreeDotsVertical
+                            className="text-2xl hover:scale-105"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                            }}
+                          ></BsThreeDotsVertical>
                         </div>
                         <ul
                           tabIndex={0}
