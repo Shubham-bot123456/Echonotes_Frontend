@@ -19,7 +19,7 @@ export default function LoginPage({ setShowSearchAndLogout }) {
     let jwttoken = null;
 
     await axios({
-      url: "http://localhost:8080/generate/authenticate",
+      url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/generate/authenticate",
       method: "POST",
       data: {
         username: username,
