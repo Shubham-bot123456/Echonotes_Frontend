@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
+import { setJwt } from "./redux/JwtSlice";
 
 export default function LoginPage({ setShowSearchAndLogout }) {
   const dispatcher = useDispatch();
@@ -34,7 +35,10 @@ export default function LoginPage({ setShowSearchAndLogout }) {
         console.log("ERROR occured" + err);
         setError(true);
       });
-    if (jwttoken != null) navigate(`/main/${jwttoken}`);
+    if (jwttoken != null) {
+      navigate(`/main/${jwttoken}`);
+      dispatcher(setJwt(jwttoken));
+    }
   };
   return (
     <div className="h-screen flex justify-evenly fixed top-0 left-0 w-full">

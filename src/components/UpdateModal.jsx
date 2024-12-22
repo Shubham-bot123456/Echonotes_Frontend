@@ -8,7 +8,8 @@ export default function UpdateModal({ updateBook, book }) {
     <div>
       <button
         className="hover:underline"
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           document.getElementById(`showModal${book.id}`).showModal();
           console.log(
             "inside the update button note id : " +

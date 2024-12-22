@@ -1,42 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { CgLogOff } from "react-icons/cg";
 import { BiSolidLeaf } from "react-icons/bi";
-import { motion } from "motion/react";
+import axios from "axios";
+
 import { useSelector } from "react-redux";
+import Cat from "../iconimages/cat.png";
+import Panda from "../iconimages/panda.png";
+import Man from "../iconimages/man.png";
+import Woman from "../iconimages/woman.png";
+import Hacker from "../iconimages/hacker.png";
+import Gamer from "../iconimages/gamer.png";
 
 export default function Header({ setsearch, showSearchAndLogout }) {
   const [localSearch, setLocalSearch] = useState("");
+  const [avatar, setAvatar] = useState("");
   const navigate = useNavigate();
 
   let userName = useSelector((state) => state.userdetails.value);
+  let jwttoken = useSelector((state) => state.jwtdetails.value);
+  let refresh = useSelector((state) => state.refreshdetails.value);
+
+  //init
+  useEffect(() => {
+    (async () => {
+      console.log("Inside the header useEffect function");
+      console.log("in header the jwt token is " + jwttoken);
+      if (showSearchAndLogout === false) return;
+      let avatarName = "";
+      await axios({
+        url: "http://localhost:8080/todo/getAvatar",
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${jwttoken}`,
+        },
+      })
+        .then((res) => {
+          avatarName = res.data;
+          console.log("avatar is " + avatarName);
+        })
+        .catch((err) => {
+          console.error("Error while fetching avatar name for the user");
+        });
+      if (avatarName == "Panda") setAvatar(<img src={Panda}></img>);
+      else if (avatarName == "Man") setAvatar(<img src={Man}></img>);
+      else if (avatarName == "Woman") setAvatar(<img src={Woman}></img>);
+      else if (avatarName == "Hacker") setAvatar(<img src={Hacker}></img>);
+      else if (avatarName == "Cat") setAvatar(<img src={Cat}></img>);
+      else if (avatarName == "Gamer") setAvatar(<img src={Gamer}></img>);
+    })();
+  }, [refresh, showSearchAndLogout]);
 
   // header parent div.
   return (
     <div className="w-full fixed top-0 left-0  flex justify-between px-8 py-4 shadow-lg z-50 bg-white">
       <section className="flex gap-1">
         <h1 className="text-semibold text-lg ">EchoNotes</h1>
-        <motion.div
-          // className="bg-green-500"
-          initial={{
-            rotate: 0,
-            scale: 1,
-          }}
-          animate={{
-            scale: [1, 1.05, 1.05, 1, 1],
-            rotate: [0, 0, -20, 20, 0],
-          }}
-          transition={{
-            duration: 2,
-            ease: "easeInOut",
-            delay: 1,
-            repeatDelay: 5,
-            type: "keyframes",
-            repeat: Infinity,
-          }}
-        >
-          <BiSolidLeaf className="text-3xl"></BiSolidLeaf>
-        </motion.div>
+
+        <BiSolidLeaf className="text-3xl"></BiSolidLeaf>
       </section>
       {showSearchAndLogout ? (
         <section className="flex gap-4">
@@ -51,7 +72,6 @@ export default function Header({ setsearch, showSearchAndLogout }) {
               className="h-full bg-black text-white px-2 py-1 text-sm absolute top-0 right-0  rounded-tr-md rounded-br-md"
               onClick={() => {
                 setsearch(localSearch);
-                setLocalSearch("");
               }}
             >
               search
@@ -63,7 +83,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
                 className="w-8 bg-green-500 rounded-full overflow-hidden"
                 type="button"
               >
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                {avatar}
               </div>
             </summary>
             <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
@@ -78,6 +98,15 @@ export default function Header({ setsearch, showSearchAndLogout }) {
                     }}
                   ></CgLogOff>
                 </div>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    navigate("/avatar");
+                  }}
+                >
+                  Change Avatar
+                </button>
               </li>
             </ul>
           </details>

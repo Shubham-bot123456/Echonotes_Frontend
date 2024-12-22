@@ -6,24 +6,13 @@ import LoginPage from "./components/LoginPage.jsx";
 import Header from "./components/Header.jsx";
 import { useState } from "react";
 import Preview from "./components/Preview.jsx";
+import AvatarChangePage from "./components/AvatarChangePage.jsx";
 
 function App() {
   const [search, setsearch] = useState("");
   const [showSearchAndLogout, setShowSearchAndLogout] = useState(false);
   return (
     <>
-      {/* <div className="w-full h-screen relative">
-        <textarea
-          placeholder="start writing here .... "
-          className="w-full h-full"
-        ></textarea>
-        <button className=" btn bg-black text-white hover:underline absolute bottom-4 right-4 z-50 hover:bg-black">
-          add
-        </button>
-        <button className=" btn bg-black text-white hover:underline absolute bottom-4 left-4 z-50 hover:bg-black">
-          back
-        </button>
-      </div> */}
       <BrowserRouter>
         <Header
           setsearch={setsearch}
@@ -53,9 +42,11 @@ function App() {
                 <LoginPage setShowSearchAndLogout={setShowSearchAndLogout} />
               }
             ></Route>
+            <Route path="/avatar" element={<AvatarChangePage />}></Route>
           </Routes>
         </div>
       </BrowserRouter>
+      {/* <AvatarChangePage></AvatarChangePage> */}
     </>
   );
 }

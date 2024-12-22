@@ -6,8 +6,11 @@ import { useParams } from "react-router";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Preview from "./Preview";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/UserSlice";
+import { setJwt } from "./redux/JwtSlice";
+
+import { setRefresh } from "./redux/Refresh";
 
 const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const [bookList, setBookList] = useState([]);
@@ -19,6 +22,8 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const [loading, setLoading] = useState(false);
 
   const dispatcher = useDispatch();
+  let refresh = useSelector((state) => state.refreshdetails.value);
+  let jwttoken = useSelector((state) => state.jwtdetails.value);
 
   useEffect(() => {
     loadBooks();
@@ -86,6 +91,8 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
         setBookList([]);
       });
     setLoading(false);
+    dispatcher(setRefresh(refresh + 1));
+    dispatcher(setJwt(token));
     return tempArray;
   };
   const deleteUser = async (bookId) => {
@@ -248,7 +255,10 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                             <button
                               className=" hover:underline hover:bg-black hover:text-white
                   "
-                              onClick={() => deleteUser(book.id)}
+                              onClick={(e) => {
+                                deleteUser(book.id);
+                                e.stopPropagation();
+                              }}
                             >
                               delete
                             </button>
