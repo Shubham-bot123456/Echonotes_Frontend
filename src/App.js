@@ -22,7 +22,7 @@ function App() {
         <div className="mt-16">
           <Routes>
             <Route
-              path="/main/:token"
+              path="/Echonotes_Frontend/main/:token"
               element={
                 <MainComponent
                   search={search}
@@ -31,24 +31,27 @@ function App() {
               }
             ></Route>
             <Route
-              path="/register"
+              path="/Echonotes_Frontend/register"
               element={
                 <RegisterPage setShowSearchAndLogout={setShowSearchAndLogout} />
               }
             ></Route>
             <Route
-              path="/login"
+              path="/Echonotes_Frontend/login"
               element={
                 <LoginPage setShowSearchAndLogout={setShowSearchAndLogout} />
               }
             ></Route>
             <Route
-              path="/"
+              path="/Echonotes_Frontend"
               element={
                 <LoginPage setShowSearchAndLogout={setShowSearchAndLogout} />
               }
             ></Route>
-            <Route path="/avatar" element={<AvatarChangePage />}></Route>
+            <Route
+              path="/Echonotes_Frontend/avatar"
+              element={<AvatarChangePage />}
+            ></Route>
           </Routes>
         </div>
       </BrowserRouter>

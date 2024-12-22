@@ -36,7 +36,7 @@ export default function LoginPage({ setShowSearchAndLogout }) {
         setError(true);
       });
     if (jwttoken != null) {
-      navigate(`/main/${jwttoken}`);
+      navigate(`/Echonotes_Frontend/main/${jwttoken}`);
       dispatcher(setJwt(jwttoken));
     }
   };
@@ -83,7 +83,7 @@ export default function LoginPage({ setShowSearchAndLogout }) {
             <p className="text-sm text-slate-600">haven't registered please </p>
             <a
               className="text-sm text-blue-600 ml-3 hover:underline cursor-pointer"
-              onClick={() => navigate("/register")}
+              onClick={() => navigate("/Echonotes_Frontend/register")}
             >
               register
             </a>

@@ -94,7 +94,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
                   <CgLogOff
                     className="text-2xl hover:scale-105 "
                     onClick={() => {
-                      navigate("/login");
+                      navigate("/Echonotes_Frontend/login");
                     }}
                   ></CgLogOff>
                 </div>
@@ -102,7 +102,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
               <li>
                 <button
                   onClick={() => {
-                    navigate("/avatar");
+                    navigate("/Echonotes_Frontend/avatar");
                   }}
                 >
                   Change Avatar
