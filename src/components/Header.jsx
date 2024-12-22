@@ -29,7 +29,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
       if (showSearchAndLogout === false) return;
       let avatarName = "";
       await axios({
-        url: "http://localhost:8080/todo/getAvatar",
+        url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/getAvatar",
         method: "GET",
         headers: {
           Authorization: `Bearer ${jwttoken}`,

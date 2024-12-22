@@ -29,7 +29,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     loadBooks();
     setShowSearchAndLogout(true);
     axios({
-      url: "http://localhost:8080/todo/username",
+      url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/username",
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -51,7 +51,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
 
   const addBook = async (id, description) => {
     await axios({
-      url: "http://localhost:8080/todo/add",
+      url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/add",
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -74,7 +74,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     let tempArray = [];
     console.log("token : " + token);
     await axios({
-      url: "http://localhost:8080/todo/get",
+      url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/get",
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -97,7 +97,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   };
   const deleteUser = async (bookId) => {
     await axios({
-      url: `http://localhost:8080/todo/${bookId}`,
+      url: `https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/${bookId}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -118,7 +118,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       "firing the update request with the payload " + JSON.stringify(book)
     );
     await axios({
-      url: `http://localhost:8080/todo/${book.id}`,
+      url: `https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/${book.id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

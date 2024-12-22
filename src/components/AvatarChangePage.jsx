@@ -19,7 +19,7 @@ export default function AvatarChangePage() {
   const navigate = useNavigate();
   const updateUserAvatar = async (avatarName) => {
     await axios({
-      url: `http://localhost:8080/todo/updateAvatar/${avatarName}`,
+      url: `https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/updateAvatar/${avatarName}`,
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ export default function AvatarChangePage() {
           <RxAvatar className="text-2xl"></RxAvatar>
           <p className="text-lg">Change Avatar</p>
         </section>
-        <div className="grid grid-cols-4 gap-2 m-5 h-[90%]  overflow-auto">
+        <div className="grid grid-cols-3 md:grid-cols-4 gap-2 m-5 h-[90%]  overflow-auto">
           <div>
             <img
               src={Cat}

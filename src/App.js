@@ -42,6 +42,12 @@ function App() {
                 <LoginPage setShowSearchAndLogout={setShowSearchAndLogout} />
               }
             ></Route>
+            <Route
+              path="/"
+              element={
+                <LoginPage setShowSearchAndLogout={setShowSearchAndLogout} />
+              }
+            ></Route>
             <Route path="/avatar" element={<AvatarChangePage />}></Route>
           </Routes>
         </div>

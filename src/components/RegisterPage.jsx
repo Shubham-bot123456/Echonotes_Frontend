@@ -16,7 +16,7 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
     let jwttoken = null;
 
     await axios({
-      url: "http://localhost:8080/generate/register",
+      url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/generate/register",
       method: "POST",
       data: {
         username: username,
