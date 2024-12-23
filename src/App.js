@@ -13,7 +13,7 @@ function App() {
   const [showSearchAndLogout, setShowSearchAndLogout] = useState(false);
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/Echonotes_Frontend">
         <Header
           setsearch={setsearch}
           showSearchAndLogout={showSearchAndLogout}
@@ -22,7 +22,7 @@ function App() {
         <div className="mt-16">
           <Routes>
             <Route
-              path="/Echonotes_Frontend/main/:token"
+              path="/main/:token"
               element={
                 <MainComponent
                   search={search}
@@ -31,27 +31,24 @@ function App() {
               }
             ></Route>
             <Route
-              path="/Echonotes_Frontend/register"
+              path="/register"
               element={
                 <RegisterPage setShowSearchAndLogout={setShowSearchAndLogout} />
               }
             ></Route>
             <Route
-              path="/Echonotes_Frontend/login"
+              path="/login"
               element={
                 <LoginPage setShowSearchAndLogout={setShowSearchAndLogout} />
               }
             ></Route>
             <Route
-              path="/Echonotes_Frontend"
+              path="/"
               element={
                 <LoginPage setShowSearchAndLogout={setShowSearchAndLogout} />
               }
             ></Route>
-            <Route
-              path="/Echonotes_Frontend/avatar"
-              element={<AvatarChangePage />}
-            ></Route>
+            <Route path="/avatar" element={<AvatarChangePage />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

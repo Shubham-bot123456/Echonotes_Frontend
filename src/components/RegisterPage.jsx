@@ -33,7 +33,7 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
         setError(true);
         console.log("ERROR occured" + err);
       });
-    if (jwttoken != null) navigate(`/Echonotes_Frontend/main/${jwttoken}`);
+    if (jwttoken != null) navigate(`/main/${jwttoken}`);
   };
   return (
     <div className="h-screen flex justify-evenly fixed top-0 left-0 w-full">
@@ -103,7 +103,7 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
               <a
                 className="text-blue-600 text-sm hover:underline cursor-pointer ml-2"
                 onClick={() => {
-                  navigate("/Echonotes_Frontend/login");
+                  navigate("/login");
                 }}
               >
                 login
@@ -123,8 +123,3 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
     </div>
   );
 }
-
-
-
-
-

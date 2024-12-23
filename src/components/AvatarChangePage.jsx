@@ -33,7 +33,7 @@ export default function AvatarChangePage() {
       .catch((err) => {
         console.error(err.data);
       });
-    navigate("/Echonotes_Frontend/main/" + token);
+    navigate("/main/" + token);
   };
   return (
     <div className="fixed top-0 left-0 w-full h-screen flex justify-evenly">

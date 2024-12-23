@@ -36,10 +36,6 @@ export default function Header({ setsearch, showSearchAndLogout }) {
         },
       })
         .then((res) => {
-
-
-
-
           avatarName = res.data;
           console.log("avatar is " + avatarName);
         })
@@ -105,7 +101,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
               <li>
                 <button
                   onClick={() => {
-                    navigate("/Echonotes_Frontend/avatar");
+                    navigate("/avatar");
                   }}
                 >
                   Change Avatar
