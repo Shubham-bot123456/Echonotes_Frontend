@@ -285,9 +285,12 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       ></input>
       <button onClick={() => searchFunction()}>search</button> */}
         </div>
+         
       )}{" "}
-    </div>
+</div>
   );
 };
 
-export default MainComponent;
+export default MainComponent
+
+

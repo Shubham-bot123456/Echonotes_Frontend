@@ -123,3 +123,8 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
     </div>
   );
 }
+
+
+
+
+

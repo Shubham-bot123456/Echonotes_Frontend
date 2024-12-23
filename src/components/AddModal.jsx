@@ -29,6 +29,16 @@ export default function AddModal({ addBook }) {
           <Dock type="add" id={id} title={title} addBook={addBook}></Dock>
         </div>
       </dialog>{" "}
+
+   
+
     </div>
   );
+
+
+}
+
+
+function print(printable){
+console.log(printable);
 }

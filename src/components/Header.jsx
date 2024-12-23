@@ -36,6 +36,10 @@ export default function Header({ setsearch, showSearchAndLogout }) {
         },
       })
         .then((res) => {
+
+
+
+
           avatarName = res.data;
           console.log("avatar is " + avatarName);
         })
@@ -55,8 +59,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
   return (
     <div className="w-full fixed top-0 left-0  flex justify-between px-8 py-4 shadow-lg z-50 bg-white">
       <section className="flex gap-1">
-        <h1 className="text-semibold text-lg ">EchoNotes</h1>
-
+        <h1 className="text-semibold text-lg">EchoNotes</h1>
         <BiSolidLeaf className="text-3xl"></BiSolidLeaf>
       </section>
       {showSearchAndLogout ? (

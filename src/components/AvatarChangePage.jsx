@@ -10,6 +10,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { RxAvatar } from "react-icons/rx";
 import { setRefresh } from "./redux/Refresh";
+import { MdSystemSecurityUpdate } from "react-icons/md";
 
 export default function AvatarChangePage() {
   let token = useSelector((state) => state.jwtdetails.value);
