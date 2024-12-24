@@ -3,8 +3,10 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setJwt } from "./redux/JwtSlice";
+import Cookies from "universal-cookie";
 
 export default function LoginPage({ setShowSearchAndLogout }) {
+  const cookie = new Cookies();
   const dispatcher = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +38,8 @@ export default function LoginPage({ setShowSearchAndLogout }) {
         setError(true);
       });
     if (jwttoken != null) {
-      navigate(`/main/${jwttoken}`);
+      navigate(`/main`);
+      cookie.set("authorization", jwttoken);
       dispatcher(setJwt(jwttoken));
     }
   };

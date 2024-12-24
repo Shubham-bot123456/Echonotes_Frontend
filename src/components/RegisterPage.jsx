@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import Cookies from "universal-cookie";
 export default function RegisterPage({ setShowSearchAndLogout }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-
+  const cookie = new Cookies();
   useEffect(() => {
     setShowSearchAndLogout(false);
   }, []);
@@ -33,7 +34,9 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
         setError(true);
         console.log("ERROR occured" + err);
       });
-    if (jwttoken != null) navigate(`/main/${jwttoken}`);
+    if (jwttoken != null) {
+      navigate(`/main`);
+    }
   };
   return (
     <div className="h-screen flex justify-evenly fixed top-0 left-0 w-full">

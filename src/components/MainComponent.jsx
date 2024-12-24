@@ -11,10 +11,11 @@ import { setUser } from "./redux/UserSlice";
 import { setJwt } from "./redux/JwtSlice";
 
 import { setRefresh } from "./redux/Refresh";
+import Cookies from "universal-cookie";
 
 const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const [bookList, setBookList] = useState([]);
-  const { token } = useParams();
+
   // preview attributes.
   const [showPreview, setShowPreview] = useState(false);
   const [previewText, setPreviewText] = useState("");
@@ -24,6 +25,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const dispatcher = useDispatch();
   let refresh = useSelector((state) => state.refreshdetails.value);
   let jwttoken = useSelector((state) => state.jwtdetails.value);
+  const cookie = new Cookies();
 
   useEffect(() => {
     loadBooks();
@@ -32,7 +34,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/username",
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookie.get("authorization")}`,
       },
     })
       .then((res) => {
@@ -54,7 +56,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/add",
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookie.get("authorization")}`,
       },
       data: {
         id: id,
@@ -72,12 +74,12 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const loadBooks = async () => {
     setLoading(true);
     let tempArray = [];
-    console.log("token : " + token);
+    console.log("token : " + cookie.get("authorization"));
     await axios({
       url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/get",
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookie.get("authorization")}`,
       },
     })
       .then((res) => {
@@ -92,14 +94,14 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       });
     setLoading(false);
     dispatcher(setRefresh(refresh + 1));
-    dispatcher(setJwt(token));
+    dispatcher(setJwt(cookie.get("authorization")));
     return tempArray;
   };
   const deleteUser = async (bookId) => {
     await axios({
       url: `https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/${bookId}`,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookie.get("authorization")}`,
       },
       method: "DELETE",
     })
@@ -120,7 +122,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     await axios({
       url: `https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/${book.id}`,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookie.get("authorization")}`,
       },
       method: "PUT",
       data: book,
@@ -285,12 +287,9 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       ></input>
       <button onClick={() => searchFunction()}>search</button> */}
         </div>
-         
       )}{" "}
-</div>
+    </div>
   );
 };
 
-export default MainComponent
-
-
+export default MainComponent;

@@ -11,19 +11,20 @@ import { useNavigate } from "react-router";
 import { RxAvatar } from "react-icons/rx";
 import { setRefresh } from "./redux/Refresh";
 import { MdSystemSecurityUpdate } from "react-icons/md";
+import Cookies from "universal-cookie";
 
 export default function AvatarChangePage() {
   let token = useSelector((state) => state.jwtdetails.value);
   let refresh = useSelector((state) => state.refreshdetails.value);
   const dispatcher = useDispatch();
-
+  const cookie = new Cookies();
   const navigate = useNavigate();
   const updateUserAvatar = async (avatarName) => {
     await axios({
       url: `https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/updateAvatar/${avatarName}`,
       method: "PUT",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookie.get("authorization")}`,
       },
     })
       .then((res) => {
@@ -33,7 +34,7 @@ export default function AvatarChangePage() {
       .catch((err) => {
         console.error(err.data);
       });
-    navigate("/main/" + token);
+    navigate("/main");
   };
   return (
     <div className="fixed top-0 left-0 w-full h-screen flex justify-evenly">

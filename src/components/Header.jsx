@@ -11,6 +11,7 @@ import Man from "../iconimages/man.png";
 import Woman from "../iconimages/woman.png";
 import Hacker from "../iconimages/hacker.png";
 import Gamer from "../iconimages/gamer.png";
+import Cookies from "universal-cookie";
 
 export default function Header({ setsearch, showSearchAndLogout }) {
   const [localSearch, setLocalSearch] = useState("");
@@ -26,13 +27,14 @@ export default function Header({ setsearch, showSearchAndLogout }) {
     (async () => {
       console.log("Inside the header useEffect function");
       console.log("in header the jwt token is " + jwttoken);
+      const cookie = new Cookies();
       if (showSearchAndLogout === false) return;
       let avatarName = "";
       await axios({
         url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/getAvatar",
         method: "GET",
         headers: {
-          Authorization: `Bearer ${jwttoken}`,
+          Authorization: `Bearer ${cookie.get("authorization")}`,
         },
       })
         .then((res) => {
