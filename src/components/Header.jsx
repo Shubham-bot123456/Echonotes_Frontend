@@ -93,7 +93,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
                   <CgLogOff
                     className="text-2xl hover:scale-105 "
                     onClick={() => {
-                      navigate("/Echonotes_Frontend/login");
+                      navigate("/login");
                     }}
                   ></CgLogOff>
                 </div>
