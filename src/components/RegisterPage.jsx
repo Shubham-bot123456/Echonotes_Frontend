@@ -35,6 +35,7 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
         console.log("ERROR occured" + err);
       });
     if (jwttoken != null) {
+      cookie.set("authorization", jwttoken);
       navigate(`/main`);
     }
   };

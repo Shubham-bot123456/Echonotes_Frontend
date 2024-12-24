@@ -5,7 +5,7 @@ import axios from "axios";
 import { useParams } from "react-router";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Preview from "./Preview";
-
+import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/UserSlice";
 import { setJwt } from "./redux/JwtSlice";
@@ -20,6 +20,8 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const [previewText, setPreviewText] = useState("");
   // loading attributes.
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const dispatcher = useDispatch();
   let refresh = useSelector((state) => state.refreshdetails.value);
@@ -68,6 +70,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       .catch((err) => {
         console.log("error : " + err);
       });
+    navigate(`/main`);
     loadBooks();
   };
   const loadBooks = async () => {
