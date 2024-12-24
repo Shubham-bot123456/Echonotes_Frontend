@@ -15,7 +15,6 @@ import Cookies from "universal-cookie";
 
 const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const [bookList, setBookList] = useState([]);
-
   // preview attributes.
   const [showPreview, setShowPreview] = useState(false);
   const [previewText, setPreviewText] = useState("");

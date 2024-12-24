@@ -12,6 +12,7 @@ import { RxAvatar } from "react-icons/rx";
 import { setRefresh } from "./redux/Refresh";
 import { MdSystemSecurityUpdate } from "react-icons/md";
 import Cookies from "universal-cookie";
+import { MdClose } from "react-icons/md";
 
 export default function AvatarChangePage() {
   let token = useSelector((state) => state.jwtdetails.value);
@@ -38,7 +39,14 @@ export default function AvatarChangePage() {
   };
   return (
     <div className="fixed top-0 left-0 w-full h-screen flex justify-evenly">
-      <div className="p-5 m-auto w-[60vw] h-[60vh]  rounded-xl shadow-2xl">
+      <div className="p-5 m-auto w-[60vw] h-[60vh]  rounded-xl shadow-2xl relative">
+        <MdClose
+          className="absolute top-4 right-4"
+          size={35}
+          onClick={() => {
+            navigate(`/main`);
+          }}
+        />
         <section className="flex gap-1">
           <RxAvatar className="text-2xl"></RxAvatar>
           <p className="text-lg">Change Avatar</p>
