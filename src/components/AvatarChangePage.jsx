@@ -51,7 +51,7 @@ export default function AvatarChangePage() {
           <RxAvatar className="text-2xl"></RxAvatar>
           <p className="text-lg">Change Avatar</p>
         </section>
-        <div className="m-auto grid grid-cols-3 md:grid-cols-4 gap-2  h-[90%]  overflow-auto">
+        <div className="bg-red-500 m-auto grid grid-cols-3 md:grid-cols-4 gap-2  h-[90%]  overflow-auto">
           <div>
             <img
               src={Cat}

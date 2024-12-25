@@ -4,9 +4,11 @@ import { FaRegCircle } from "react-icons/fa";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { RiSaveLine } from "react-icons/ri";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router";
 
 export default function Dock({ type, id, title, addBook, book, updateBook }) {
   const [showDock, setShowDock] = useState(true);
+  const navigate = useNavigate();
   return (
     <motion.div
       className="w-[100%] fixed bottom-6 left-0 flex justify-evenly"
@@ -64,7 +66,10 @@ export default function Dock({ type, id, title, addBook, book, updateBook }) {
         >
           <form className="flex justify-evenly gap-3">
             <button>
-              <IoIosArrowRoundBack className="text-white bg-black text-3xl hover:scale-105"></IoIosArrowRoundBack>
+              <IoIosArrowRoundBack
+                className="text-white bg-black text-3xl hover:scale-105"
+                onClick={() => navigate("/home")}
+              ></IoIosArrowRoundBack>
             </button>
             <button>
               <FaRegCircle

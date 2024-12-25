@@ -146,7 +146,6 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   };
 
   const searchFunction = async () => {
-    // setLoading(true);
     console.log("running search function");
     let tempArray = await loadBooks();
     console.log(
@@ -163,7 +162,6 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     console.log("filtered array is : " + JSON.stringify(filteredArray));
     setBookList(filteredArray);
     console.log("came here !");
-    // setLoading(false);
   };
 
   const trimDescription = (description) => {
