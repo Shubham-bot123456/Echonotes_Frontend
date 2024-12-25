@@ -2,7 +2,8 @@ import AddModal from "./AddModal";
 import UpdateModal from "./UpdateModal";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router";
+import { CiTimer } from "react-icons/ci";
+
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Preview from "./Preview";
 import { useNavigate } from "react-router";
@@ -242,6 +243,15 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                       {trimDescription(book.description)}
                     </p>
                     <div className="card-actions justify-end">
+                      {/* created on updated on time  */}
+                      <section className="flex gap-1 absolute bottom-2 left-2">
+                        <CiTimer className="text-sm text-slate-800" />
+                        <p className="text-xs text-slate-500">
+                          {book.lastUpdatedOn != null
+                            ? new Date(book.lastUpdatedOn).toDateString()
+                            : ""}
+                        </p>
+                      </section>
                       <div className="dropdown ">
                         <div tabIndex={0} className="list-none">
                           <BsThreeDotsVertical
