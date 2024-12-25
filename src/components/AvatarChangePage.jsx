@@ -39,7 +39,7 @@ export default function AvatarChangePage() {
   };
   return (
     <div className="fixed top-0 left-0 w-full h-screen flex justify-evenly">
-      <div className="p-5 m-auto w-[60vw] h-[60vh]  rounded-xl shadow-2xl relative">
+      <div className="bg-green-500 p-5 m-auto w-[60vw] h-[60vh]  rounded-xl shadow-2xl relative">
         <MdClose
           className="absolute top-4 right-4"
           size={35}
@@ -51,7 +51,7 @@ export default function AvatarChangePage() {
           <RxAvatar className="text-2xl"></RxAvatar>
           <p className="text-lg">Change Avatar</p>
         </section>
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-2 m-5 h-[90%]  overflow-auto">
+        <div className="m-auto grid grid-cols-3 md:grid-cols-4 gap-2  h-[90%]  overflow-auto">
           <div>
             <img
               src={Cat}
