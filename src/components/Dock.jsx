@@ -68,7 +68,11 @@ export default function Dock({ type, id, title, addBook, book, updateBook }) {
             <button>
               <IoIosArrowRoundBack
                 className="text-white bg-black text-3xl hover:scale-105"
-                onClick={() => navigate("/home")}
+                onClick={() => {
+                  console.log("from dock navigating to home ");
+
+                  navigate("/home");
+                }}
               ></IoIosArrowRoundBack>
             </button>
             <button>
