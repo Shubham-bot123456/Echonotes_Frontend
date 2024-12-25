@@ -65,7 +65,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
           <div className="relative">
             <input
               placeholder="search .."
-              className="input input-sm relative border-2 border-black"
+              className="input input-sm w-[140px] md:w-full relative border-2 border-black"
               value={localSearch}
               onChange={(event) => setLocalSearch(event.target.value)}
             />
