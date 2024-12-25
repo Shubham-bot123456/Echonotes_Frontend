@@ -39,62 +39,64 @@ export default function AvatarChangePage() {
   };
   return (
     <div className="fixed top-0 left-0 w-full h-screen flex justify-evenly">
-      <div className="bg-green-500 p-5 m-auto w-[60vw] h-[60vh]  rounded-xl shadow-2xl relative">
+      <div className="p-5 m-auto w-[60vw] h-[60vh]  rounded-xl shadow-2xl relative">
         <MdClose
-          className="absolute top-4 right-4"
-          size={35}
-          onClick={() => {
-            navigate(`/main`);
-          }}
+            className="absolute top-4 right-4"
+            size={35}
+            onClick={() => {
+              navigate(`/main`);
+            }}
         />
         <section className="flex gap-1">
           <RxAvatar className="text-2xl"></RxAvatar>
           <p className="text-lg">Change Avatar</p>
         </section>
-        <div className="bg-red-500 m-auto grid grid-cols-3 md:grid-cols-4 gap-2  h-[90%]  overflow-auto">
-          <div>
+        <div
+            className="grid grid-cols-3 md:grid-cols-4 gap-4 items-center h-[90%] p-3 overflow-auto">
+          <div className="flex justify-center">
             <img
-              src={Cat}
-              className="w-[70px] h-[70px] rounded-full"
-              onClick={() => updateUserAvatar("Cat")}
-            ></img>
+                src={Cat}
+                className="w-[70px] h-[70px] rounded-full"
+                onClick={() => updateUserAvatar("Cat")}
+            />
           </div>
-          <div>
+          <div className="flex justify-center">
             <img
-              src={Gamer}
-              className="w-[70px] h-[70px] rounded-full"
-              onClick={() => updateUserAvatar("Gamer")}
-            ></img>
+                src={Gamer}
+                className="w-[70px] h-[70px] rounded-full"
+                onClick={() => updateUserAvatar("Gamer")}
+            />
           </div>
-          <div>
+          <div className="flex justify-center">
             <img
-              src={Man}
-              className="w-[70px] h-[70px] rounded-full"
-              onClick={() => updateUserAvatar("Man")}
-            ></img>
+                src={Man}
+                className="w-[70px] h-[70px] rounded-full"
+                onClick={() => updateUserAvatar("Man")}
+            />
           </div>
-          <div>
+          <div className="flex justify-center">
             <img
-              src={Woman}
-              className="w-[70px] h-[70px] rounded-full"
-              onClick={() => updateUserAvatar("Woman")}
-            ></img>
+                src={Woman}
+                className="w-[70px] h-[70px] rounded-full"
+                onClick={() => updateUserAvatar("Woman")}
+            />
           </div>
-          <div>
+          <div className="flex justify-center">
             <img
-              src={Panda}
-              className="w-[70px] h-[70px] rounded-full"
-              onClick={() => updateUserAvatar("Panda")}
-            ></img>
+                src={Panda}
+                className="w-[70px] h-[70px] rounded-full"
+                onClick={() => updateUserAvatar("Panda")}
+            />
           </div>
-          <div>
+          <div className="flex justify-center">
             <img
-              src={Hacker}
-              className="w-[70px] h-[70px] rounded-full"
-              onClick={() => updateUserAvatar("Hacker")}
-            ></img>
+                src={Hacker}
+                className="w-[70px] h-[70px] rounded-full"
+                onClick={() => updateUserAvatar("Hacker")}
+            />
           </div>
         </div>
+
       </div>
     </div>
   );
