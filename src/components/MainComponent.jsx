@@ -54,6 +54,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   }, [search]);
 
   const addBook = async (id, description) => {
+    setLoading(true);
     await axios({
       url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/add",
       method: "POST",
@@ -71,11 +72,12 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       .catch((err) => {
         console.log("error : " + err);
       });
+
+    await loadBooks();
     navigate(`/main`);
-    loadBooks();
+    setLoading(false);
   };
   const loadBooks = async () => {
-    setLoading(true);
     let tempArray = [];
     console.log("token : " + cookie.get("authorization"));
     await axios({
@@ -95,12 +97,13 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
         console.log("error : " + err);
         setBookList([]);
       });
-    setLoading(false);
+
     dispatcher(setRefresh(refresh + 1));
     dispatcher(setJwt(cookie.get("authorization")));
     return tempArray;
   };
   const deleteUser = async (bookId) => {
+    setLoading(true);
     await axios({
       url: `https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/${bookId}`,
       headers: {
@@ -115,9 +118,11 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
         console.log("error : " + err);
       });
 
-    loadBooks();
+    await loadBooks();
+    setLoading(false);
   };
   const updateBook = async (book) => {
+    setLoading(true);
     let id = book.id;
     console.log(
       "firing the update request with the payload " + JSON.stringify(book)
@@ -136,10 +141,12 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       .catch((err) => {
         console.log("error : " + err);
       });
-    loadBooks();
+    await loadBooks();
+    setLoading(false);
   };
 
   const searchFunction = async () => {
+    // setLoading(true);
     console.log("running search function");
     let tempArray = await loadBooks();
     console.log(
@@ -155,6 +162,8 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     });
     console.log("filtered array is : " + JSON.stringify(filteredArray));
     setBookList(filteredArray);
+    console.log("came here !");
+    // setLoading(false);
   };
 
   const trimDescription = (description) => {
@@ -175,7 +184,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
               You have no notes ! Please create one by tapping add !
             </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
+            <div className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
               {/* <table className="table table-zebra w-[80%] mx-auto ">
             <thead>
               <tr className="text-black text-sm">

@@ -45,7 +45,7 @@ export default function LoginPage({ setShowSearchAndLogout }) {
   };
   return (
     <div className="h-screen flex justify-evenly fixed top-0 left-0 w-full">
-      <div className="flex m-auto border-2 rounded-md shadow-2xl">
+      <div className="md:flex m-auto border-2 rounded-md shadow-2xl overflow-hidden">
         <section className="flex flex-col px-8 py-12 gap-6">
           <label className="input input-bordered flex items-center gap-2">
             <svg
@@ -101,7 +101,7 @@ export default function LoginPage({ setShowSearchAndLogout }) {
           )}
         </section>
         <button
-          className=" bg-gray-800  hover:underline text-white w-[100px] rounded-tr-md rounded-br-md"
+          className=" w-full bg-gray-800 py-5 hover:underline text-white md:w-[100px] md:rounded-tr-md md:rounded-br-md"
           onClick={onSubmit}
         >
           LOGIN
