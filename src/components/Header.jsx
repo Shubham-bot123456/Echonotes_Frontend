@@ -55,7 +55,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
 
   // header parent div.
   return (
-    <div className="w-full fixed top-0 left-0  flex justify-between px-8 py-4 shadow-lg z-50 bg-white">
+    <div className="w-full fixed top-0 left-0  flex justify-between px-1 md:px-8 py-4 shadow-lg z-50 bg-white">
       <section className="flex gap-1">
         <h1 className="text-semibold text-lg">EchoNotes</h1>
         <BiSolidLeaf className="text-3xl"></BiSolidLeaf>
