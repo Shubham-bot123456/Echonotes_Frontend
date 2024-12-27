@@ -19,9 +19,9 @@ export default function LoginPage({ setShowSearchAndLogout }) {
     // 1. fire register req
     // call maincomponent and pass jwt token to the main component
     let jwttoken = null;
-
+    const backendUrl = process.env.REACT_APP_backend_url;
     await axios({
-      url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/generate/authenticate",
+      url: `${backendUrl}/generate/authenticate`,
       method: "POST",
       data: {
         username: username,

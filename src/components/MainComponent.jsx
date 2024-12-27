@@ -3,7 +3,7 @@ import UpdateModal from "./UpdateModal";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CiTimer } from "react-icons/ci";
-
+import ShareModal from "./ShareModal";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Preview from "./Preview";
 import { useNavigate } from "react-router";
@@ -22,6 +22,8 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   // loading attributes.
   const [loading, setLoading] = useState(false);
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
   const navigate = useNavigate();
   let searchList = useSelector((state) => state.searchListDetails.value);
 
@@ -34,7 +36,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     loadBooks();
     setShowSearchAndLogout(true);
     axios({
-      url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/username",
+      url: `${backendUrl}/todo/username`,
       method: "GET",
       headers: {
         Authorization: `Bearer ${cookie.get("authorization")}`,
@@ -53,7 +55,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const addBook = async (id, description) => {
     setLoading(true);
     await axios({
-      url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/add",
+      url: `${backendUrl}/todo/add`,
       method: "POST",
       headers: {
         Authorization: `Bearer ${cookie.get("authorization")}`,
@@ -74,11 +76,12 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     navigate(`/main`);
     setLoading(false);
   };
+
   const loadBooks = async () => {
     let tempArray = [];
     console.log("token : " + cookie.get("authorization"));
     await axios({
-      url: "https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/get",
+      url: `${backendUrl}/todo/get`,
       method: "GET",
       headers: {
         Authorization: `Bearer ${cookie.get("authorization")}`,
@@ -102,7 +105,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const deleteUser = async (bookId) => {
     setLoading(true);
     await axios({
-      url: `https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/${bookId}`,
+      url: `${backendUrl}/todo/${bookId}`,
       headers: {
         Authorization: `Bearer ${cookie.get("authorization")}`,
       },
@@ -118,6 +121,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     await loadBooks();
     setLoading(false);
   };
+
   const updateBook = async (book) => {
     setLoading(true);
     let id = book.id;
@@ -125,7 +129,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       "firing the update request with the payload " + JSON.stringify(book)
     );
     await axios({
-      url: `https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/${book.id}`,
+      url: `${backendUrl}/todo/${book.id}`,
       headers: {
         Authorization: `Bearer ${cookie.get("authorization")}`,
       },
@@ -141,6 +145,25 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     await loadBooks();
     setLoading(false);
   };
+
+  const shareBook = async (calledUser, book)=> {
+    if (calledUser === "") {return}
+
+    await axios({
+      url: `${backendUrl}/todo/share-book`,
+      headers:{
+        Authorization: `Bearer ${cookie.get("authorization")}`,
+      },
+      method: "PUT",
+      data: {"calledUser": calledUser, "sharableTodo": book},
+    })
+        .then((res) => {
+          console.log("axios response from share " + JSON.stringify(res.data));
+        })
+        .catch((err) => {
+          console.log("error : " + err);
+        });
+  }
 
   useEffect(() => {
     (async () => {
@@ -294,22 +317,32 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                         >
                           <li>
                             <button
-                              className=" hover:underline hover:bg-black hover:text-white
+                                className=" hover:underline hover:bg-black hover:text-white
                   "
-                              onClick={(e) => {
-                                deleteUser(book.id);
-                                e.stopPropagation();
-                              }}
+                                onClick={(e) => {
+                                  deleteUser(book.id);
+                                  e.stopPropagation();
+                                }}
                             >
                               delete
                             </button>
                           </li>
                           <li className="hover:bg-black hover:text-white rounded-sm">
                             <UpdateModal
-                              updateBook={updateBook}
-                              book={book}
+                                updateBook={updateBook}
+                                book={book}
                             ></UpdateModal>
                           </li>
+                          <li
+                              className="hover:bg-black hover:text-white rounded-sm"
+                              onClick={() => document.getElementById('showModal').showModal()}
+                          >
+                            <ShareModal
+                                shareBook = {shareBook}
+                                book={book}
+                            ></ShareModal>
+                          </li>
+
                         </ul>
                       </div>
                     </div>

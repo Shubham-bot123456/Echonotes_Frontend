@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 export default function Dock({ type, id, title, addBook, book, updateBook }) {
   const [showDock, setShowDock] = useState(true);
   const navigate = useNavigate();
+
   return (
     <motion.div
       className="w-[100%] fixed bottom-6 left-0 flex justify-evenly"

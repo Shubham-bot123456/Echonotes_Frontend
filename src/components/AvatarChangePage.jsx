@@ -24,8 +24,10 @@ export default function AvatarChangePage() {
 
   const updateUserAvatar = async (avatarName) => {
     setLoading(true);
+    //estimated-corrianne-echonotes-5e2e8076.koyeb.app
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
     await axios({
-      url: `https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/updateAvatar/${avatarName}`,
+      url: `${backendUrl}/todo/updateAvatar/${avatarName}`,
       method: "PUT",
       headers: {
         Authorization: `Bearer ${cookie.get("authorization")}`,

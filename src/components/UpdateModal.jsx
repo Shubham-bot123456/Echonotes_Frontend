@@ -11,7 +11,7 @@ export default function UpdateModal({ updateBook, book }) {
         onClick={(e) => {
           e.stopPropagation();
           document.getElementById(`showModal${book.id}`).showModal();
-          console.log(
+      console.log(
             "inside the update button note id : " +
               book.id +
               " and the note description " +
