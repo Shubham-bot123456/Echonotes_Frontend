@@ -19,7 +19,7 @@ export default function LoginPage({ setShowSearchAndLogout }) {
     // 1. fire register req
     // call maincomponent and pass jwt token to the main component
     let jwttoken = null;
-    const backendUrl = process.env.REACT_APP_backend_url;
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
     await axios({
       url: `${backendUrl}/generate/authenticate`,
       method: "POST",
