@@ -64,15 +64,9 @@ export default function Dock({ type, id, title, addBook, book, updateBook }) {
             borderRadius: [100, 80, 60, 40, 20, 15],
           }}
         >
-          <div className="flex justify-evenly gap-3">
+          <form className="flex justify-evenly gap-3">
             <button>
-              <IoIosArrowRoundBack
-                className="text-white bg-black text-3xl hover:scale-105"
-                onClick={() => {
-                  console.log("from dock navigating to home ");
-                  navigate("/home");
-                }}
-              ></IoIosArrowRoundBack>
+              <IoIosArrowRoundBack className="text-white bg-black text-3xl hover:scale-105"></IoIosArrowRoundBack>
             </button>
             <button>
               <FaRegCircle
@@ -90,7 +84,7 @@ export default function Dock({ type, id, title, addBook, book, updateBook }) {
             >
               <RiSaveLine className="text-white bg-black text-3xl hover:scale-105"></RiSaveLine>
             </button>
-          </div>
+          </form>
         </motion.div>
       ) : (
         <motion.button
