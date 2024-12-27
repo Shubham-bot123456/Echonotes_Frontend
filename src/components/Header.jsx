@@ -41,7 +41,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
   //     dispatcher(setSearchListFunction(searchList));
   //   })();
   // }, searchList);
-
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const removeElementFromTheList = (item) => {
     let tempArray = [];
     for (let i = 0; i < searchList.length; i++) {
@@ -64,7 +64,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
       if (showSearchAndLogout === false) return;
       let avatarName = "";
       await axios({
-        url: "http://localhost:8080/todo/getAvatar",
+        url: `${backendUrl}/todo/getAvatar`,
         method: "GET",
         headers: {
           Authorization: `Bearer ${cookie.get("authorization")}`,
