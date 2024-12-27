@@ -55,7 +55,7 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
             <input
               onChange={(event) => setUsername(event.target.value)}
               placeholder="username"
-              className="input input-lg"
+              className="input input-lg outline-none border-0"
             ></input>
           </label>
           <label className="input input-bordered flex items-center gap-2">
@@ -74,7 +74,7 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
             <input
               onChange={(event) => setPassword(event.target.value)}
               placeholder="password"
-              className="input input-lg"
+              className="input input-lg outline-none border-0"
               type="password"
             ></input>
           </label>

@@ -290,7 +290,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                         </div>
                         <ul
                           tabIndex={0}
-                          className=" dropdown-content menu dropdown-end bg-base-100 rounded-box z-[1] w-40 p-2 shadow"
+                          className=" dropdown-content menu dropdown-end bg-base-100 rounded-box z-[1] w-25 p-2 shadow"
                         >
                           <li>
                             <button
