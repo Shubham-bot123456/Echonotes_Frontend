@@ -31,6 +31,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
   const [searchList, setSearchList] = useState([]);
   const [searchListOpen, setSearchListOpen] = useState(false);
   const dispatcher = useDispatch();
+  const cookie = new Cookies();
 
   // useEffect(() => {
   //   (async () => {
@@ -176,6 +177,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
                     className="text-2xl hover:scale-105 "
                     onClick={() => {
                       navigate("/login");
+                      cookie.remove("authorization");
                     }}
                   ></CgLogOff>
                 </div>

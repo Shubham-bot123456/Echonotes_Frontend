@@ -12,6 +12,7 @@ import { RxAvatar } from "react-icons/rx";
 import { setRefresh } from "./redux/Refresh";
 import Cookies from "universal-cookie";
 import { MdClose } from "react-icons/md";
+import { useState } from "react";
 
 export default function AvatarChangePage() {
   let token = useSelector((state) => state.jwtdetails.value);
@@ -19,7 +20,10 @@ export default function AvatarChangePage() {
   const dispatcher = useDispatch();
   const cookie = new Cookies();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
   const updateUserAvatar = async (avatarName) => {
+    setLoading(true);
     await axios({
       url: `https://estimated-corrianne-echonotes-5e2e8076.koyeb.app/todo/updateAvatar/${avatarName}`,
       method: "PUT",
@@ -34,6 +38,7 @@ export default function AvatarChangePage() {
       .catch((err) => {
         console.error(err.data);
       });
+    setLoading(false);
     navigate("/main");
   };
   return (
@@ -50,50 +55,67 @@ export default function AvatarChangePage() {
           <RxAvatar className="text-2xl"></RxAvatar>
           <p className="text-lg">Change Avatar</p>
         </section>
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-4 items-center h-[90%] p-3 overflow-auto">
-          <div className="flex justify-center">
-            <img
-              src={Cat}
-              className="w-[70px] h-[70px] rounded-full"
+        {loading ? (
+          <span className="fixed top-[50%] left-[50%] loading loading-spinner loading-lg mx-auto"></span>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center h-[90%] p-3 overflow-auto">
+            <div
+              className="flex justify-center w-full h-full  rounded-lg shadow-xl"
               onClick={() => updateUserAvatar("Cat")}
-            />
-          </div>
-          <div className="flex justify-center">
-            <img
-              src={Gamer}
-              className="w-[70px] h-[70px] rounded-full"
+            >
+              <img
+                src={Cat}
+                className="w-[70px] h-[70px] rounded-full m-auto"
+              />
+            </div>
+            <div
+              className="flex justify-center  rounded-lg shadow-xl w-full h-full"
               onClick={() => updateUserAvatar("Gamer")}
-            />
-          </div>
-          <div className="flex justify-center">
-            <img
-              src={Man}
-              className="w-[70px] h-[70px] rounded-full"
+            >
+              <img
+                src={Gamer}
+                className="w-[70px] h-[70px] rounded-full m-auto"
+              />
+            </div>
+            <div
+              className="flex justify-center shadow-xl w-full h-full"
               onClick={() => updateUserAvatar("Man")}
-            />
-          </div>
-          <div className="flex justify-center">
-            <img
-              src={Woman}
-              className="w-[70px] h-[70px] rounded-full"
+            >
+              <img
+                src={Man}
+                className="w-[70px] h-[70px] rounded-full m-auto"
+              />
+            </div>
+            <div
+              className="flex justify-center shadow-xl w-full h-full"
               onClick={() => updateUserAvatar("Woman")}
-            />
-          </div>
-          <div className="flex justify-center">
-            <img
-              src={Panda}
-              className="w-[70px] h-[70px] rounded-full"
+            >
+              <img
+                src={Woman}
+                className="w-[70px] h-[70px] rounded-full m-auto"
+              />
+            </div>
+            <div
+              className="flex justify-center shadow-xl w-full h-full"
               onClick={() => updateUserAvatar("Panda")}
-            />
+            >
+              <img
+                src={Panda}
+                className="w-[70px] h-[70px] rounded-full m-auto"
+              />
+            </div>
+            <div
+              className="flex justify-center shadow-xl w-full h-full"
+              onClick={() => updateUserAvatar("Panda")}
+            >
+              <img
+                src={Hacker}
+                className="w-[70px] h-[70px] rounded-full m-auto"
+                x
+              />
+            </div>
           </div>
-          <div className="flex justify-center">
-            <img
-              src={Hacker}
-              className="w-[70px] h-[70px] rounded-full"
-              onClick={() => updateUserAvatar("Hacker")}
-            />
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
