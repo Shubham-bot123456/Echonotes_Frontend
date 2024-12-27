@@ -3,8 +3,9 @@ import { useNavigate } from "react-router";
 import { CgLogOff } from "react-icons/cg";
 import { BiSolidLeaf } from "react-icons/bi";
 import axios from "axios";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Cat from "../iconimages/cat.png";
 import Panda from "../iconimages/panda.png";
 import Man from "../iconimages/man.png";
@@ -12,7 +13,8 @@ import Woman from "../iconimages/woman.png";
 import Hacker from "../iconimages/hacker.png";
 import Gamer from "../iconimages/gamer.png";
 import Cookies from "universal-cookie";
-
+import { IoIosClose } from "react-icons/io";
+import { setSearchListFunction } from "./redux/SearchListSlice";
 export default function Header({ setsearch, showSearchAndLogout }) {
   const [localSearch, setLocalSearch] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -21,7 +23,32 @@ export default function Header({ setsearch, showSearchAndLogout }) {
   let userName = useSelector((state) => state.userdetails.value);
   let jwttoken = useSelector((state) => state.jwtdetails.value);
   let refresh = useSelector((state) => state.refreshdetails.value);
+  const [searchList, setSearchList] = useState([]);
+  const [searchListOpen, setSearchListOpen] = useState(false);
+  const dispatcher = useDispatch();
 
+  // useEffect(() => {
+  //   (async () => {
+  //     console.log(
+  //       "inside useeffect hook in header and the searchlist is " + searchList
+  //     );
+  //     dispatcher(setSearchListFunction(searchList));
+  //   })();
+  // }, searchList);
+
+  const removeElementFromTheList = (item) => {
+    let tempArray = [];
+    for (let i = 0; i < searchList.length; i++) {
+      if (item != searchList[i]) {
+        tempArray.push(searchList[i]);
+      }
+    }
+    setSearchList(tempArray);
+    dispatcher(setSearchListFunction(tempArray));
+    if (searchList.length == 0) {
+      searchListOpen = false;
+    }
+  };
   //init
   useEffect(() => {
     (async () => {
@@ -55,13 +82,55 @@ export default function Header({ setsearch, showSearchAndLogout }) {
 
   // header parent div.
   return (
-    <div className="w-full fixed top-0 left-0  flex justify-between px-1 md:px-8 py-4 shadow-lg z-50 bg-white">
+    <div className="w-full fixed top-0 left-0 flex justify-between px-1 md:px-8 py-4 shadow-lg z-50 bg-white">
       <section className="flex gap-1">
         <h1 className="text-semibold text-lg">EchoNotes</h1>
         <BiSolidLeaf className="text-3xl"></BiSolidLeaf>
       </section>
       {showSearchAndLogout ? (
         <section className="flex gap-4">
+          {searchList.length > 0 ? (
+            <details className=" dropdown dropdown-end m-auto">
+              <summary className="list-none">
+                {!searchListOpen ? (
+                  <IoIosArrowDown
+                    className="text-lg my-auto text-white bg-black rounded-sm"
+                    onClick={() => {
+                      setSearchListOpen(true);
+                    }}
+                  ></IoIosArrowDown>
+                ) : (
+                  <IoIosArrowUp
+                    className="text-lg my-auto  text-white bg-black rounded-sm "
+                    onClick={() => {
+                      setSearchListOpen(false);
+                    }}
+                  ></IoIosArrowUp>
+                )}
+              </summary>{" "}
+              <ul className="menu dropdown-content bg-base-100 rounded-md z-[1] w-40 p-2 shadow">
+                {searchList.map((item) => {
+                  return (
+                    <li
+                      key={item}
+                      className="p-1 my-1 shadow-md relative rounded-md"
+                    >
+                      <p>{item}</p>
+                      <div className="absolute top-1.5 right-1 text-xl">
+                        <IoIosClose
+                          onClick={() => {
+                            removeElementFromTheList(item);
+                          }}
+                        ></IoIosClose>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </details>
+          ) : (
+            ""
+          )}
           <div className="relative">
             <input
               placeholder="search .."
@@ -72,7 +141,13 @@ export default function Header({ setsearch, showSearchAndLogout }) {
             <button
               className="h-full bg-black text-white px-2 py-1 text-sm absolute top-0 right-0  rounded-tr-md rounded-br-md"
               onClick={() => {
+                if (localSearch.trim().length == 0) {
+                  dispatcher(setSearchListFunction(searchList));
+                  return;
+                }
+                searchList.push(localSearch);
                 setsearch(localSearch);
+                dispatcher(setSearchListFunction(searchList));
               }}
             >
               search

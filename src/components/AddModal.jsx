@@ -32,7 +32,3 @@ export default function AddModal({ addBook }) {
     </div>
   );
 }
-
-function print(printable) {
-  console.log(printable);
-}

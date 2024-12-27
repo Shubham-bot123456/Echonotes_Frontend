@@ -64,13 +64,12 @@ export default function Dock({ type, id, title, addBook, book, updateBook }) {
             borderRadius: [100, 80, 60, 40, 20, 15],
           }}
         >
-          <form className="flex justify-evenly gap-3">
+          <div className="flex justify-evenly gap-3">
             <button>
               <IoIosArrowRoundBack
                 className="text-white bg-black text-3xl hover:scale-105"
                 onClick={() => {
                   console.log("from dock navigating to home ");
-
                   navigate("/home");
                 }}
               ></IoIosArrowRoundBack>
@@ -91,7 +90,7 @@ export default function Dock({ type, id, title, addBook, book, updateBook }) {
             >
               <RiSaveLine className="text-white bg-black text-3xl hover:scale-105"></RiSaveLine>
             </button>
-          </form>
+          </div>
         </motion.div>
       ) : (
         <motion.button

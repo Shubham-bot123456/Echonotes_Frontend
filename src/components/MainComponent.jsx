@@ -23,6 +23,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  let searchList = useSelector((state) => state.searchListDetails.value);
 
   const dispatcher = useDispatch();
   let refresh = useSelector((state) => state.refreshdetails.value);
@@ -48,10 +49,6 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
         setBookList([]);
       });
   }, []);
-
-  useEffect(() => {
-    searchFunction();
-  }, [search]);
 
   const addBook = async (id, description) => {
     setLoading(true);
@@ -145,24 +142,47 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     setLoading(false);
   };
 
-  const searchFunction = async () => {
-    console.log("running search function");
-    let tempArray = await loadBooks();
-    console.log(
-      "sorted array in search function initially is : " +
-        JSON.stringify(bookList)
-    );
-    if (search == null || search === "") return;
-    let filteredArray = new Array();
-    tempArray.map((i) => {
-      if (i.description.includes(search)) {
-        filteredArray.push(i);
+  useEffect(() => {
+    (async () => {
+      // console.log("searchList in maincomponent is " + JSON.stringify(searchList));
+      // console.log("running search function");
+      // let tempArray = await loadBooks();
+      // console.log(
+      //   "sorted array in search function initially is : " +
+      //     JSON.stringify(bookList)
+      // );
+      // if (search == null || search === "") return;
+      // let filteredArray = new Array();
+      // tempArray.map((i) => {
+      //   if (i.description.includes(search)) {
+      //     filteredArray.push(i);
+      //   }
+      // });
+      // console.log("filtered array is : " + JSON.stringify(filteredArray));
+      // setBookList(filteredArray);
+      // console.log("came here !");
+      setLoading(true);
+      let tempArray = await loadBooks();
+
+      if (searchList.length === 0) {
+        setLoading(false);
+        return;
       }
-    });
-    console.log("filtered array is : " + JSON.stringify(filteredArray));
-    setBookList(filteredArray);
-    console.log("came here !");
-  };
+
+      searchList.map((item) => {
+        let filteredArray = new Array();
+        tempArray.map((i) => {
+          if (i.description.includes(item)) {
+            filteredArray.push(i);
+          }
+        });
+        tempArray = filteredArray;
+      });
+
+      setBookList(tempArray);
+      setLoading(false);
+    })();
+  }, [searchList]);
 
   const trimDescription = (description) => {
     if (description.length <= 20) return description;
