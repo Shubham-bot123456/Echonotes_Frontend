@@ -202,7 +202,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
               You have no notes ! Please create one by tapping add !
             </p>
           ) : (
-            <div className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
+            <div className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4 bg-green-500`">
               {/* <table className="table table-zebra w-[80%] mx-auto ">
             <thead>
               <tr className="text-black text-sm">

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { CgLogOff } from "react-icons/cg";
 import { BiSolidLeaf } from "react-icons/bi";
 import axios from "axios";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp, IoMdArrowDropup } from "react-icons/io";
 
 import { useDispatch, useSelector } from "react-redux";
 import Cat from "../iconimages/cat.png";
@@ -15,6 +15,11 @@ import Gamer from "../iconimages/gamer.png";
 import Cookies from "universal-cookie";
 import { IoIosClose } from "react-icons/io";
 import { setSearchListFunction } from "./redux/SearchListSlice";
+import { IoMdArrowDropdown } from "react-icons/io";
+import {
+  MdOutlineKeyboardDoubleArrowDown,
+  MdOutlineKeyboardDoubleArrowUp,
+} from "react-icons/md";
 export default function Header({ setsearch, showSearchAndLogout }) {
   const [localSearch, setLocalSearch] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -45,8 +50,8 @@ export default function Header({ setsearch, showSearchAndLogout }) {
     }
     setSearchList(tempArray);
     dispatcher(setSearchListFunction(tempArray));
-    if (searchList.length == 0) {
-      searchListOpen = false;
+    if (tempArray.length == 0) {
+      setSearchListOpen(false);
     }
   };
   //init
@@ -93,19 +98,19 @@ export default function Header({ setsearch, showSearchAndLogout }) {
             <details className=" dropdown dropdown-end m-auto">
               <summary className="list-none">
                 {!searchListOpen ? (
-                  <IoIosArrowDown
-                    className="text-lg my-auto text-white bg-black rounded-sm"
+                  <MdOutlineKeyboardDoubleArrowDown
+                    className="text-2xl my-auto animate-pulse"
                     onClick={() => {
                       setSearchListOpen(true);
                     }}
-                  ></IoIosArrowDown>
+                  ></MdOutlineKeyboardDoubleArrowDown>
                 ) : (
-                  <IoIosArrowUp
-                    className="text-lg my-auto  text-white bg-black rounded-sm "
+                  <MdOutlineKeyboardDoubleArrowUp
+                    className="text-2xl my-auto animate-pulse"
                     onClick={() => {
                       setSearchListOpen(false);
                     }}
-                  ></IoIosArrowUp>
+                  ></MdOutlineKeyboardDoubleArrowUp>
                 )}
               </summary>{" "}
               <ul className="menu dropdown-content bg-base-100 rounded-md z-[1] w-40 p-2 shadow">
