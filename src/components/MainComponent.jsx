@@ -54,7 +54,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
 
   const addBook = async (description) => {
     setLoading(true);
-    console.log(description);
+    console.log("----------------------------"+description);
     await axios({
       url: `${backendUrl}/todo/add`,
       method: "POST",

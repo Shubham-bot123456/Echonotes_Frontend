@@ -79,7 +79,7 @@ export default function Dock({ type, id, title, addBook, book, updateBook }) {
             </button>
             <button
               onClick={() => {
-                if (type == "add") addBook(id, title);
+                if (type == "add") addBook(title);
                 else updateBook(book);
               }}
             >
