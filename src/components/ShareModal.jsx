@@ -16,7 +16,7 @@ export default function ShareModal({ shareBook, book, setBlurr }) {
       </button>
       <dialog
         id="showModal"
-        className="items-center justify-center bg-black/50 backdrop-blur-sm"
+        className="items-center justify-center backdrop-blur-sm rounded-md shadow-2xl"
         onClick={(e) => e.target.tagName === "DIALOG" && e.target.close()}
       >
         <div
@@ -46,7 +46,7 @@ export default function ShareModal({ shareBook, book, setBlurr }) {
               onClick={() => {
                 shareBook(calledUser, book);
               }}
-              className="bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg px-4 py-2 transition duration-200"
+              className="bg-black text-white font-medium rounded-md px-4 py-2 transition duration-200"
             >
               Share
             </button>
