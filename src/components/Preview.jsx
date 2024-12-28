@@ -6,7 +6,7 @@ export default function Preview({ description, setShowPreview }) {
 
   return (
     <div className="w-full h-screen fixed top-0 left-0 flex justify-evenly z-40">
-      <div className="card bg-base-100 w-[600px] shadow-2xl h-96 m-auto relative p-3 overflow-auto">
+      <div className="card bg-base-100 w-[60vw] shadow-2xl h-[60vh] m-auto relative p-3 overflow-auto">
         <section className="absolute top-1 left-2 flex gap-1">
           <MdPreview className="m-auto text-2xl"></MdPreview>
           <p>Preview</p>
