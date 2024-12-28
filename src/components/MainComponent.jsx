@@ -52,8 +52,9 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       });
   }, []);
 
-  const addBook = async (id, description) => {
+  const addBook = async (description) => {
     setLoading(true);
+    console.log(description);
     await axios({
       url: `${backendUrl}/todo/add`,
       method: "POST",
@@ -61,7 +62,6 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
         Authorization: `Bearer ${cookie.get("authorization")}`,
       },
       data: {
-        id: id,
         description: description,
       },
     })
@@ -128,6 +128,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     console.log(
       "firing the update request with the payload " + JSON.stringify(book)
     );
+    console.log("ID OF BOOK IS "+book.id);
     await axios({
       url: `${backendUrl}/todo/${book.id}`,
       headers: {

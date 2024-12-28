@@ -8,16 +8,17 @@ export default function ShareModal({ shareBook, book, setBlurr }) {
         className="hover:underline"
         onClick={(e) => {
           e.stopPropagation();
-          document.getElementById(`showModal`).showModal();
+          document.getElementById(`shareModal${book.id}`).showModal();
+          console.log(book.id);
           setBlurr(true);
         }}
       >
         share
       </button>
       <dialog
-        id="showModal"
-        className="items-center justify-center backdrop-blur-sm rounded-md shadow-2xl"
-        onClick={(e) => e.target.tagName === "DIALOG" && e.target.close()}
+          id={`shareModal${book.id}`}
+          className="items-center justify-center backdrop-blur-sm rounded-md shadow-2xl"
+          onClick={(e) => e.target.tagName === "DIALOG" && e.target.close()}
       >
         <div
           className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md"
@@ -44,6 +45,7 @@ export default function ShareModal({ shareBook, book, setBlurr }) {
             />
             <button
               onClick={() => {
+                  console.log(book.id);
                 shareBook(calledUser, book);
               }}
               className="bg-black text-white font-medium rounded-md px-4 py-2 transition duration-200"
