@@ -21,7 +21,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const [previewText, setPreviewText] = useState("");
   // loading attributes.
   const [loading, setLoading] = useState(false);
-
+  const [blurr, setBlurr] = useState(false);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const navigate = useNavigate();
@@ -146,24 +146,26 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     setLoading(false);
   };
 
-  const shareBook = async (calledUser, book)=> {
-    if (calledUser === "") {return}
+  const shareBook = async (calledUser, book) => {
+    if (calledUser === "") {
+      return;
+    }
 
     await axios({
       url: `${backendUrl}/todo/share-book`,
-      headers:{
+      headers: {
         Authorization: `Bearer ${cookie.get("authorization")}`,
       },
       method: "PUT",
-      data: {"calledUser": calledUser, "sharableTodo": book},
+      data: { calledUser: calledUser, sharableTodo: book },
     })
-        .then((res) => {
-          console.log("axios response from share " + JSON.stringify(res.data));
-        })
-        .catch((err) => {
-          console.log("error : " + err);
-        });
-  }
+      .then((res) => {
+        console.log("axios response from share " + JSON.stringify(res.data));
+      })
+      .catch((err) => {
+        console.log("error : " + err);
+      });
+  };
 
   useEffect(() => {
     (async () => {
@@ -281,7 +283,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                   id="card"
                   className={`card card-compact bg-base-100 w-60 md:w-80  h-[120px] shadow-2xl rounded-lg  transition-all ${
                     showPreview ? "blur-sm" : "blur-none"
-                  }`}
+                  } ${blurr ? "blur-sm" : "blur-none"}`}
                   onClick={() => {
                     setPreviewText(book.description);
                     setShowPreview(true);
@@ -302,7 +304,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                             : ""}
                         </p>
                       </section>
-                      <div className="dropdown ">
+                      <div className="dropdown dropdown-end">
                         <div tabIndex={0} className="list-none">
                           <BsThreeDotsVertical
                             className="text-2xl hover:scale-105"
@@ -317,32 +319,34 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                         >
                           <li>
                             <button
-                                className=" hover:underline hover:bg-black hover:text-white
+                              className=" hover:underline hover:bg-black hover:text-white
                   "
-                                onClick={(e) => {
-                                  deleteUser(book.id);
-                                  e.stopPropagation();
-                                }}
+                              onClick={(e) => {
+                                deleteUser(book.id);
+                                e.stopPropagation();
+                              }}
                             >
                               delete
                             </button>
                           </li>
                           <li className="hover:bg-black hover:text-white rounded-sm">
                             <UpdateModal
-                                updateBook={updateBook}
-                                book={book}
+                              updateBook={updateBook}
+                              book={book}
                             ></UpdateModal>
                           </li>
                           <li
-                              className="hover:bg-black hover:text-white rounded-sm"
-                              onClick={() => document.getElementById('showModal').showModal()}
+                            className="hover:bg-black hover:text-white rounded-sm"
+                            onClick={() =>
+                              document.getElementById("showModal").showModal()
+                            }
                           >
                             <ShareModal
-                                shareBook = {shareBook}
-                                book={book}
+                              shareBook={shareBook}
+                              book={book}
+                              setBlurr={setBlurr}
                             ></ShareModal>
                           </li>
-
                         </ul>
                       </div>
                     </div>
