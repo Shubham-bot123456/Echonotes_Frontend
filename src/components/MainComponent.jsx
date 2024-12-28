@@ -281,7 +281,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
               {bookList.map((book) => (
                 <div
                   id="card"
-                  className={`card card-compact bg-base-100 w-60 md:w-80  h-[120px] shadow-2xl rounded-lg  transition-all ${
+                  className={`card card-compact bg-base-100 w-80  h-[120px] shadow-2xl rounded-lg  transition-all ${
                     showPreview ? "blur-sm" : "blur-none"
                   } ${blurr ? "blur-sm" : "blur-none"}`}
                   onClick={() => {
