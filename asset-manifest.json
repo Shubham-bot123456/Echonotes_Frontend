@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Echonotes_Frontend/static/css/main.6d42c3c7.css",
-    "main.js": "/Echonotes_Frontend/static/js/main.0bbd3ce5.js",
+    "main.css": "/Echonotes_Frontend/static/css/main.22060f25.css",
+    "main.js": "/Echonotes_Frontend/static/js/main.f8d12d7e.js",
     "static/js/453.2a82e7ac.chunk.js": "/Echonotes_Frontend/static/js/453.2a82e7ac.chunk.js",
     "static/media/gamer.png": "/Echonotes_Frontend/static/media/gamer.3c37a790f9676542b372.png",
     "static/media/man.png": "/Echonotes_Frontend/static/media/man.6f678b05521261910525.png",
@@ -10,12 +10,12 @@
     "static/media/panda.png": "/Echonotes_Frontend/static/media/panda.0253ba0e4ab6e6b77c68.png",
     "static/media/cat.png": "/Echonotes_Frontend/static/media/cat.077086a0654634be593c.png",
     "index.html": "/Echonotes_Frontend/index.html",
-    "main.6d42c3c7.css.map": "/Echonotes_Frontend/static/css/main.6d42c3c7.css.map",
-    "main.0bbd3ce5.js.map": "/Echonotes_Frontend/static/js/main.0bbd3ce5.js.map",
+    "main.22060f25.css.map": "/Echonotes_Frontend/static/css/main.22060f25.css.map",
+    "main.f8d12d7e.js.map": "/Echonotes_Frontend/static/js/main.f8d12d7e.js.map",
     "453.2a82e7ac.chunk.js.map": "/Echonotes_Frontend/static/js/453.2a82e7ac.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d42c3c7.css",
-    "static/js/main.0bbd3ce5.js"
+    "static/css/main.22060f25.css",
+    "static/js/main.f8d12d7e.js"
   ]
 }
