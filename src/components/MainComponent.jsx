@@ -10,6 +10,8 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/UserSlice";
 import { setJwt } from "./redux/JwtSlice";
+import { MdDeleteOutline } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
 
 import { setRefresh } from "./redux/Refresh";
 import Cookies from "universal-cookie";
@@ -54,7 +56,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
 
   const addBook = async (description) => {
     setLoading(true);
-    console.log("----------------------------"+description);
+    console.log("----------------------------" + description);
     await axios({
       url: `${backendUrl}/todo/add`,
       method: "POST",
@@ -128,7 +130,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     console.log(
       "firing the update request with the payload " + JSON.stringify(book)
     );
-    console.log("ID OF BOOK IS "+book.id);
+    console.log("ID OF BOOK IS " + book.id);
     await axios({
       url: `${backendUrl}/todo/${book.id}`,
       headers: {
@@ -282,7 +284,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
               {bookList.map((book) => (
                 <div
                   id="card"
-                  className={`card card-compact bg-base-100 w-80  h-[120px] shadow-2xl rounded-lg  transition-all ${
+                  className={`card card-compact bg-base-100 w-[70vw] md:w-[40vw] lg:w-[30vw] xl:w-[22vw]  h-[120px] shadow-2xl rounded-lg  transition-all ${
                     showPreview ? "blur-sm" : "blur-none"
                   } ${blurr ? "blur-sm" : "blur-none"}`}
                   onClick={() => {
@@ -316,32 +318,28 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                         </div>
                         <ul
                           tabIndex={0}
-                          className=" dropdown-content menu dropdown-end bg-base-100 rounded-box z-[1] w-25 p-2 shadow"
+                          className=" dropdown-content menu dropdown-end bg-base-100 rounded-lg z-[1] w-25 p-2 shadow-2xl "
                         >
                           <li>
-                            <button
-                              className=" hover:underline hover:bg-black hover:text-white
-                  "
-                              onClick={(e) => {
-                                deleteUser(book.id);
-                                e.stopPropagation();
-                              }}
-                            >
-                              delete
-                            </button>
+                            <div>
+                              <MdDeleteOutline
+                                className="text-black text-lg"
+                                onClick={(e) => {
+                                  deleteUser(book.id);
+                                  e.stopPropagation();
+                                }}
+                              >
+                                delete
+                              </MdDeleteOutline>
+                            </div>
                           </li>
-                          <li className="hover:bg-black hover:text-white rounded-sm">
+                          <li>
                             <UpdateModal
                               updateBook={updateBook}
                               book={book}
                             ></UpdateModal>
                           </li>
-                          <li
-                            className="hover:bg-black hover:text-white rounded-sm"
-                            onClick={() =>
-                              document.getElementById("showModal").showModal()
-                            }
-                          >
+                          <li>
                             <ShareModal
                               shareBook={shareBook}
                               book={book}

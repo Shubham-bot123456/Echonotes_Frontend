@@ -4,7 +4,7 @@ import { CgLogOff } from "react-icons/cg";
 import { BiSolidLeaf } from "react-icons/bi";
 import axios from "axios";
 import { IoIosArrowDown, IoIosArrowUp, IoMdArrowDropup } from "react-icons/io";
-
+import { IoSearch } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import Cat from "../iconimages/cat.png";
 import Panda from "../iconimages/panda.png";
@@ -95,69 +95,71 @@ export default function Header({ setsearch, showSearchAndLogout }) {
       </section>
       {showSearchAndLogout ? (
         <section className="flex gap-4">
-          {searchList.length > 0 ? (
-            <details className=" dropdown dropdown-end m-auto">
-              <summary className="list-none">
-                {!searchListOpen ? (
-                  <MdOutlineKeyboardDoubleArrowDown
-                    className="text-2xl my-auto animate-pulse"
-                    onClick={() => {
-                      setSearchListOpen(true);
-                    }}
-                  ></MdOutlineKeyboardDoubleArrowDown>
-                ) : (
-                  <MdOutlineKeyboardDoubleArrowUp
-                    className="text-2xl my-auto animate-pulse"
-                    onClick={() => {
-                      setSearchListOpen(false);
-                    }}
-                  ></MdOutlineKeyboardDoubleArrowUp>
-                )}
-              </summary>{" "}
-              <ul className="menu dropdown-content bg-base-100 rounded-md z-[1] w-40 p-2 shadow">
-                {searchList.map((item) => {
-                  return (
-                    <li
-                      key={item}
-                      className="p-1 my-1 shadow-md relative rounded-md"
-                    >
-                      <p>{item}</p>
-                      <div className="absolute top-1.5 right-1 text-xl">
-                        <IoIosClose
-                          onClick={() => {
-                            removeElementFromTheList(item);
-                          }}
-                        ></IoIosClose>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </details>
-          ) : (
-            ""
-          )}
-          <div className="relative">
-            <input
-              placeholder="search .."
-              className="input input-sm w-[140px] md:w-full relative border-2 border-black"
-              value={localSearch}
-              onChange={(event) => setLocalSearch(event.target.value)}
-            />
-            <button
-              className="h-full bg-black text-white px-2 py-1 text-sm absolute top-0 right-0  rounded-tr-md rounded-br-md"
-              onClick={() => {
-                if (localSearch.trim().length == 0) {
+          <div className="flex gap-1">
+            {searchList.length > 0 ? (
+              <details className=" dropdown dropdown-end m-auto">
+                <summary className="list-none">
+                  {!searchListOpen ? (
+                    <MdOutlineKeyboardDoubleArrowDown
+                      className="text-2xl my-auto animate-pulse"
+                      onClick={() => {
+                        setSearchListOpen(true);
+                      }}
+                    ></MdOutlineKeyboardDoubleArrowDown>
+                  ) : (
+                    <MdOutlineKeyboardDoubleArrowUp
+                      className="text-2xl my-auto animate-pulse"
+                      onClick={() => {
+                        setSearchListOpen(false);
+                      }}
+                    ></MdOutlineKeyboardDoubleArrowUp>
+                  )}
+                </summary>{" "}
+                <ul className="menu dropdown-content bg-base-100 rounded-md z-[1] w-40 p-2 shadow">
+                  {searchList.map((item) => {
+                    return (
+                      <li
+                        key={item}
+                        className="p-1 my-1 shadow-md relative rounded-md"
+                      >
+                        <p>{item}</p>
+                        <div className="absolute top-1.5 right-1 text-xl">
+                          <IoIosClose
+                            onClick={() => {
+                              removeElementFromTheList(item);
+                            }}
+                          ></IoIosClose>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </details>
+            ) : (
+              ""
+            )}
+            <div className="relative">
+              <input
+                placeholder="search .."
+                className="input input-sm w-[140px]  relative border-2 border-black"
+                value={localSearch}
+                onChange={(event) => setLocalSearch(event.target.value)}
+              />
+              <button
+                className="h-full bg-black text-white px-2 py-1 text-md  absolute top-0 right-0  rounded-tr-md rounded-br-md"
+                onClick={() => {
+                  if (localSearch.trim().length == 0) {
+                    dispatcher(setSearchListFunction(searchList));
+                    return;
+                  }
+                  searchList.push(localSearch);
+                  setsearch(localSearch);
                   dispatcher(setSearchListFunction(searchList));
-                  return;
-                }
-                searchList.push(localSearch);
-                setsearch(localSearch);
-                dispatcher(setSearchListFunction(searchList));
-              }}
-            >
-              search
-            </button>
+                }}
+              >
+                <IoSearch></IoSearch>
+              </button>
+            </div>
           </div>
           <details className="dropdown dropdown-end">
             <summary className="list-none">
