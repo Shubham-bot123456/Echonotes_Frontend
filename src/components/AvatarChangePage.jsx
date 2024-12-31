@@ -45,7 +45,7 @@ export default function AvatarChangePage() {
   };
   return (
     <div className="fixed top-0 left-0 w-full h-screen flex justify-evenly">
-      <div className="p-5 m-auto w-[60vw] h-[60vh]  rounded-xl shadow-2xl relative">
+      <div className="p-5 m-auto w-[80vw] h-[80vh]  rounded-xl shadow-2xl relative">
         <MdClose
           className="absolute top-4 right-4"
           size={35}
