@@ -12,6 +12,7 @@ import { setUser } from "./redux/UserSlice";
 import { setJwt } from "./redux/JwtSlice";
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineGroups } from "react-icons/md";
+import { MdOutlinePeople } from "react-icons/md";
 
 import { setRefresh } from "./redux/Refresh";
 import Cookies from "universal-cookie";
@@ -295,10 +296,11 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                     key={book.id}
                   >
                     {book.users != null && book.users.length > 1 ? (
-                      <MdOutlineGroups className="absolute top-4 right-4 text-xl" />
+                      <MdOutlinePeople className="absolute top-4 right-4 text-xl" />
                     ) : (
                       ""
                     )}
+
                     <div className="card-body ">
                       <p className="cursor-pointer">
                         {trimDescription(book.description)}
