@@ -1,8 +1,38 @@
 import React from "react";
 import { IoShareSocialOutline } from "react-icons/io5";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ShareModal({ shareBook, book, setBlurr }) {
   const [calledUser, setCalledUser] = React.useState("");
+
+
+    const handlePromise = () => {
+        const fakePromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const isSuccess = Math.random() > 0.5;
+                isSuccess ? resolve("Operation successful!") : reject("Operation failed!");
+            }, 2000);
+        });
+
+        toast.promise(
+            fakePromise,
+            {
+                pending: "Processing your request...",
+                success: "Done! 👌",
+                error: "Oops, something went wrong! 🤯",
+            },
+            {
+                className: "bg-blue-600 text-white",
+                bodyClassName: "text-sm font-semibold",
+                progressClassName: "bg-green-500",
+                position: "top-right",
+                autoClose: 3000,
+            }
+        );
+    };
+
+
   return (
     <div className="z-30">
       <IoShareSocialOutline
@@ -12,6 +42,7 @@ export default function ShareModal({ shareBook, book, setBlurr }) {
           document.getElementById(`shareModal${book.id}`).showModal();
           console.log(book.id);
           setBlurr(true);
+
         }}
       >
         share
@@ -21,6 +52,15 @@ export default function ShareModal({ shareBook, book, setBlurr }) {
         className="modal items-center justify-center backdrop-blur-sm rounded-md shadow-2xl"
         onClick={(e) => e.target.tagName === "DIALOG" && e.target.close()}
       >
+
+          <ToastContainer
+              toastClassName={() =>
+                  "relative flex p-4 min-h-10 rounded-md shadow-lg bg-gray-800 text-white"
+              }
+              bodyClassName={() => "text-sm font-medium"}
+              position="top-right"
+          />
+
         <div
           className="relative bg-white rounded-lg shadow-lg p-6 w-full max-w-md"
           onClick={(e) => e.stopPropagation()} // Prevent clicks inside the modal content from propagating

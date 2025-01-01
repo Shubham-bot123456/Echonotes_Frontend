@@ -16,9 +16,15 @@ export default function LoginPage({ setShowSearchAndLogout }) {
   useEffect(() => {
     setShowSearchAndLogout(false);
   }, []);
-  const onSubmit = async () => {
+  const onSubmit = async (event) => {
     // 1. fire register req
     // call maincomponent and pass jwt token to the main component
+    if (!username.trim() || !password.trim()) {
+      setError("Username and password must not be empty.");
+      return;
+    }
+    event.preventDefault();
+
     let jwttoken = null;
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
     await axios({
@@ -38,6 +44,7 @@ export default function LoginPage({ setShowSearchAndLogout }) {
         console.log("ERROR occured" + err);
         setError(true);
       });
+    console.dir(jwttoken);
     if (jwttoken != null) {
       navigate(`/main`);
       cookie.set("authorization", jwttoken);
@@ -46,8 +53,8 @@ export default function LoginPage({ setShowSearchAndLogout }) {
   };
   return (
     <div className="h-screen flex justify-evenly fixed top-0 left-0 w-full">
-      <div className="md:flex m-auto border-2 rounded-md shadow-2xl overflow-hidden">
-        <section className="flex flex-col px-8 py-12 gap-6">
+      <form onSubmit={onSubmit} className="md:flex m-auto border-2 rounded-md shadow-2xl overflow-hidden">
+        <div className="flex flex-col px-8 py-12 gap-6">
           <label className="input input-bordered flex items-center gap-2 h-12 w-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +90,7 @@ export default function LoginPage({ setShowSearchAndLogout }) {
               type="password"
             ></input>
           </label>
-          <section className="flex">
+          <div className="flex">
             <p className="text-sm text-slate-600">haven't registered please </p>
             <a
               className="text-sm text-blue-600 ml-3 hover:underline cursor-pointer"
@@ -91,7 +98,7 @@ export default function LoginPage({ setShowSearchAndLogout }) {
             >
               register
             </a>
-          </section>
+          </div>
           {/*below error tag */}
           {error ? (
             <p className="text-red-600 text-sm">
@@ -100,14 +107,14 @@ export default function LoginPage({ setShowSearchAndLogout }) {
           ) : (
             ""
           )}
-        </section>
+        </div>
         <button
           className=" w-full bg-gray-800 py-5 hover:underline text-white md:w-[100px] md:rounded-tr-md md:rounded-br-md"
           onClick={onSubmit}
         >
           LOGIN
         </button>
-      </div>
+      </form>
     </div>
   );
 }
