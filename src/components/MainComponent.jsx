@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/UserSlice";
 import { setJwt } from "./redux/JwtSlice";
 import { MdDeleteOutline } from "react-icons/md";
-import { CiEdit } from "react-icons/ci";
+import { MdOutlineGroups } from "react-icons/md";
 
 import { setRefresh } from "./redux/Refresh";
 import Cookies from "universal-cookie";
@@ -234,7 +234,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
               {/* <table className="table table-zebra w-[80%] mx-auto ">
             <thead>
               <tr className="text-black text-sm">
-                <th>note description</th>
+                <tMdOutlineGroupsh>note description</th>
                 <th>actions</th>
               </tr>
             </thead>
@@ -281,77 +281,84 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                 ""
               )}
 
-              {bookList.map((book) => (
-                <div
-                  id="card"
-                  className={`card card-compact bg-base-100 w-[70vw] md:w-[40vw] lg:w-[30vw] xl:w-[22vw]  h-[120px] shadow-2xl rounded-lg  transition-all ${
-                    showPreview ? "blur-sm" : "blur-none"
-                  } ${blurr ? "blur-sm" : "blur-none"}`}
-                  onClick={() => {
-                    setPreviewText(book.description);
-                    setShowPreview(true);
-                  }}
-                  key={book.id}
-                >
-                  <div className="card-body ">
-                    <p className="cursor-pointer">
-                      {trimDescription(book.description)}
-                    </p>
-                    <div className="card-actions justify-end">
-                      {/* created on updated on time  */}
-                      <section className="flex gap-1 absolute bottom-2 left-2">
-                        <CiTimer className="text-sm text-slate-800" />
-                        <p className="text-xs text-slate-500">
-                          {book.lastUpdatedOn != null
-                            ? new Date(book.lastUpdatedOn).toDateString()
-                            : ""}
-                        </p>
-                      </section>
-                      <div className="dropdown dropdown-end">
-                        <div tabIndex={0} className="list-none">
-                          <BsThreeDotsVertical
-                            className="text-2xl hover:scale-105"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                            }}
-                          ></BsThreeDotsVertical>
+              {bookList.map((book) => {
+                return (
+                  <div
+                    id="card"
+                    className={`card card-compact bg-base-100 w-[70vw] md:w-[40vw] lg:w-[30vw] xl:w-[22vw]  h-[120px] shadow-2xl rounded-lg  transition-all ${
+                      showPreview ? "blur-sm" : "blur-none"
+                    } ${blurr ? "blur-sm" : "blur-none"}`}
+                    onClick={() => {
+                      setPreviewText(book.description);
+                      setShowPreview(true);
+                    }}
+                    key={book.id}
+                  >
+                    {book.users != null && book.users.length > 1 ? (
+                      <MdOutlineGroups className="absolute top-4 right-4 text-xl" />
+                    ) : (
+                      ""
+                    )}
+                    <div className="card-body ">
+                      <p className="cursor-pointer">
+                        {trimDescription(book.description)}
+                      </p>
+                      <div className="card-actions justify-end">
+                        {/* created on updated on time  */}
+                        <section className="flex gap-1 absolute bottom-2 left-2">
+                          <CiTimer className="text-sm text-slate-800" />
+                          <p className="text-xs text-slate-500">
+                            {book.lastUpdatedOn != null
+                              ? new Date(book.lastUpdatedOn).toDateString()
+                              : ""}
+                          </p>
+                        </section>
+                        <div className="dropdown dropdown-end">
+                          <div tabIndex={0} className="list-none">
+                            <BsThreeDotsVertical
+                              className="text-2xl hover:scale-105"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                              }}
+                            ></BsThreeDotsVertical>
+                          </div>
+                          <ul
+                            tabIndex={0}
+                            className=" dropdown-content menu dropdown-end bg-base-100 rounded-lg z-[1] w-25 p-2 shadow-2xl "
+                          >
+                            <li>
+                              <div>
+                                <MdDeleteOutline
+                                  className="text-black text-lg"
+                                  onClick={(e) => {
+                                    deleteUser(book.id);
+                                    e.stopPropagation();
+                                  }}
+                                >
+                                  delete
+                                </MdDeleteOutline>
+                              </div>
+                            </li>
+                            <li>
+                              <UpdateModal
+                                updateBook={updateBook}
+                                book={book}
+                              ></UpdateModal>
+                            </li>
+                            <li>
+                              <ShareModal
+                                shareBook={shareBook}
+                                book={book}
+                                setBlurr={setBlurr}
+                              ></ShareModal>
+                            </li>
+                          </ul>
                         </div>
-                        <ul
-                          tabIndex={0}
-                          className=" dropdown-content menu dropdown-end bg-base-100 rounded-lg z-[1] w-25 p-2 shadow-2xl "
-                        >
-                          <li>
-                            <div>
-                              <MdDeleteOutline
-                                className="text-black text-lg"
-                                onClick={(e) => {
-                                  deleteUser(book.id);
-                                  e.stopPropagation();
-                                }}
-                              >
-                                delete
-                              </MdDeleteOutline>
-                            </div>
-                          </li>
-                          <li>
-                            <UpdateModal
-                              updateBook={updateBook}
-                              book={book}
-                            ></UpdateModal>
-                          </li>
-                          <li>
-                            <ShareModal
-                              shareBook={shareBook}
-                              book={book}
-                              setBlurr={setBlurr}
-                            ></ShareModal>
-                          </li>
-                        </ul>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
           {/* <CiSquarePlus className="text-7xl absolute bottom-2 right-2 hover:scale-105" /> */}
@@ -367,4 +374,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   );
 };
 
+function addition(a, b) {
+  console.log("addition is " + (a + b));
+}
 export default MainComponent;
