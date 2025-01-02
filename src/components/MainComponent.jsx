@@ -16,6 +16,7 @@ import { MdOutlinePeople } from "react-icons/md";
 
 import { setRefresh } from "./redux/Refresh";
 import Cookies from "universal-cookie";
+import UserModal from "./UsersModal";
 
 const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const [bookList, setBookList] = useState([]);
@@ -168,6 +169,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       })
       .catch((err) => {
         console.log("error : " + err);
+        throw err;
       });
   };
 
@@ -296,7 +298,10 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                     key={book.id}
                   >
                     {book.users != null && book.users.length > 1 ? (
-                      <MdOutlinePeople className="absolute top-4 right-4 text-xl" />
+                      <UserModal
+                        users={book.users}
+                        bookId={book.id}
+                      ></UserModal>
                     ) : (
                       ""
                     )}
