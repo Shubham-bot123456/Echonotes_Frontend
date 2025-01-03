@@ -20,6 +20,7 @@ import {
   MdOutlineKeyboardDoubleArrowDown,
   MdOutlineKeyboardDoubleArrowUp,
 } from "react-icons/md";
+import avatarNameToImageFunction from "./AvatarImageHelper";
 export default function Header({ setsearch, showSearchAndLogout }) {
   const [localSearch, setLocalSearch] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -77,12 +78,13 @@ export default function Header({ setsearch, showSearchAndLogout }) {
         .catch((err) => {
           console.error("Error while fetching avatar name for the user");
         });
-      if (avatarName == "Panda") setAvatar(<img src={Panda}></img>);
-      else if (avatarName == "Man") setAvatar(<img src={Man}></img>);
-      else if (avatarName == "Woman") setAvatar(<img src={Woman}></img>);
-      else if (avatarName == "Hacker") setAvatar(<img src={Hacker}></img>);
-      else if (avatarName == "Cat") setAvatar(<img src={Cat}></img>);
-      else if (avatarName == "Gamer") setAvatar(<img src={Gamer}></img>);
+      // if (avatarName == "Panda") setAvatar(<img src={Panda}></img>);
+      // else if (avatarName == "Man") setAvatar(<img src={Man}></img>);
+      // else if (avatarName == "Woman") setAvatar(<img src={Woman}></img>);
+      // else if (avatarName == "Hacker") setAvatar(<img src={Hacker}></img>);
+      // else if (avatarName == "Cat") setAvatar(<img src={Cat}></img>);
+      // else if (avatarName == "Gamer") setAvatar(<img src={Gamer}></img>);
+      setAvatar(avatarNameToImageFunction(avatarName));
     })();
   }, [refresh, showSearchAndLogout]);
 

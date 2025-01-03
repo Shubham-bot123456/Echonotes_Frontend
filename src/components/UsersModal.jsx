@@ -2,6 +2,7 @@ import React from "react";
 import { MdOutlinePeople } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
+import avatarNameToImageFunction from "./AvatarImageHelper";
 export default function UserModal({ users, bookId }) {
   return (
     <div>
@@ -16,6 +17,7 @@ export default function UserModal({ users, bookId }) {
           document.getElementById(`user_modal${bookId}`).showModal();
         }}
       />
+
       <dialog id={`user_modal${bookId}`} className="modal ">
         <div
           className="modal-box w-[60vw] h-[40vh] scroll-auto rounded-md "
@@ -30,10 +32,12 @@ export default function UserModal({ users, bookId }) {
               {users.map((user) => {
                 return (
                   <li
-                    className="w-full   p-4 my-2 rounded-md shadow-2xl text-center flex gap-4 "
+                    className="w-full py-4 px-10 my-2 rounded-md shadow-2xl text-center flex gap-5 "
                     key={user.username}
                   >
-                    <CgProfile className="my-auto text-xl"></CgProfile>
+                    <div className="w-8 my-auto">
+                      {avatarNameToImageFunction(user.avatar)}
+                    </div>
                     <p className="text-md">{user.username}</p>
                   </li>
                 );
