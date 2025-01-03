@@ -3,7 +3,10 @@ import { MdOutlinePeople } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
 import avatarNameToImageFunction from "./AvatarImageHelper";
+import { useSelector } from "react-redux";
+import { IoReturnUpBackOutline } from "react-icons/io5";
 export default function UserModal({ users, bookId }) {
+  const loginUser = useSelector((state) => state.userdetails.value);
   return (
     <div>
       <MdOutlinePeople
@@ -30,6 +33,7 @@ export default function UserModal({ users, bookId }) {
           <section>
             <ul onClick={(e) => e.stopPropagation()} className="my-4">
               {users.map((user) => {
+                if (user.username === loginUser) return;
                 return (
                   <li
                     className="w-full py-4 px-10 my-2 rounded-md shadow-2xl text-center flex gap-5 "
