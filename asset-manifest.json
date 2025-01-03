@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Echonotes_Frontend/static/css/main.5999438e.css",
-    "main.js": "/Echonotes_Frontend/static/js/main.d5b061a5.js",
+    "main.css": "/Echonotes_Frontend/static/css/main.ff39e86a.css",
+    "main.js": "/Echonotes_Frontend/static/js/main.d3c3ea92.js",
     "static/js/453.2a82e7ac.chunk.js": "/Echonotes_Frontend/static/js/453.2a82e7ac.chunk.js",
     "static/media/gamer.png": "/Echonotes_Frontend/static/media/gamer.3c37a790f9676542b372.png",
     "static/media/man.png": "/Echonotes_Frontend/static/media/man.6f678b05521261910525.png",
@@ -10,12 +10,12 @@
     "static/media/panda.png": "/Echonotes_Frontend/static/media/panda.0253ba0e4ab6e6b77c68.png",
     "static/media/cat.png": "/Echonotes_Frontend/static/media/cat.077086a0654634be593c.png",
     "index.html": "/Echonotes_Frontend/index.html",
-    "main.5999438e.css.map": "/Echonotes_Frontend/static/css/main.5999438e.css.map",
-    "main.d5b061a5.js.map": "/Echonotes_Frontend/static/js/main.d5b061a5.js.map",
+    "main.ff39e86a.css.map": "/Echonotes_Frontend/static/css/main.ff39e86a.css.map",
+    "main.d3c3ea92.js.map": "/Echonotes_Frontend/static/js/main.d3c3ea92.js.map",
     "453.2a82e7ac.chunk.js.map": "/Echonotes_Frontend/static/js/453.2a82e7ac.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5999438e.css",
-    "static/js/main.d5b061a5.js"
+    "static/css/main.ff39e86a.css",
+    "static/js/main.d3c3ea92.js"
   ]
 }
