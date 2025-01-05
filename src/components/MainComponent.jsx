@@ -175,23 +175,6 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
 
   useEffect(() => {
     (async () => {
-      // console.log("searchList in maincomponent is " + JSON.stringify(searchList));
-      // console.log("running search function");
-      // let tempArray = await loadBooks();
-      // console.log(
-      //   "sorted array in search function initially is : " +
-      //     JSON.stringify(bookList)
-      // );
-      // if (search == null || search === "") return;
-      // let filteredArray = new Array();
-      // tempArray.map((i) => {
-      //   if (i.description.includes(search)) {
-      //     filteredArray.push(i);
-      //   }
-      // });
-      // console.log("filtered array is : " + JSON.stringify(filteredArray));
-      // setBookList(filteredArray);
-      // console.log("came here !");
       setLoading(true);
       let tempArray = await loadBooks();
 
