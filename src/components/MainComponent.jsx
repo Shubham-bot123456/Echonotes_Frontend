@@ -234,47 +234,6 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
             </p>
           ) : (
             <div className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4 bg-green-500`">
-              {/* <table className="table table-zebra w-[80%] mx-auto ">
-            <thead>
-              <tr className="text-black text-sm">
-                <tMdOutlineGroupsh>note description</th>
-                <th>actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bookList.map((book) => {
-                return (
-                  <tr key={book.id}>
-                    <td>{trimDescription(book.description)} </td>
-                    <td>
-                      <details className="dropdown">
-                        <summary className="hover:underline cursor-pointer">
-                          options
-                        </summary>
-                        <ul className="menu dropdown-content dropdown-end bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                          <li>
-                            <button
-                              className=" hover:underline hover:bg-black hover:text-white
-                  "
-                              onClick={() => deleteUser(book.id)}
-                            >
-                              delete
-                            </button>
-                          </li>
-                          <li className="hover:bg-black hover:text-white rounded-sm">
-                            <UpdateModal
-                              updateBook={updateBook}
-                              book={book}
-                            ></UpdateModal>
-                          </li>
-                        </ul>
-                      </details>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table> */}
               {showPreview ? (
                 <Preview
                   description={previewText}
@@ -368,13 +327,6 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
               })}
             </div>
           )}
-          {/* <CiSquarePlus className="text-7xl absolute bottom-2 right-2 hover:scale-105" /> */}
-          {/* <input
-        className="input input-md"
-        placeholder="search"
-        onChange={(event) => setsearchtext(event.target.value)}
-      ></input>
-      <button onClick={() => searchFunction()}>search</button> */}
         </div>
       )}{" "}
     </div>
