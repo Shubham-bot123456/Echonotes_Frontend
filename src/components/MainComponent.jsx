@@ -230,7 +230,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                 return (
                   <div
                     id="card"
-                    className={`card card-compact bg-base-100 w-[70vw] md:w-[40vw] lg:w-[30vw] xl:w-[22vw]  h-[120px] shadow-2xl rounded-lg  transition-all ${
+                    className={`card card-compact bg-base-100 w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[22vw]  h-[120px] shadow-2xl rounded-lg  transition-all ${
                       showPreview ? "blur-sm" : "blur-none"
                     } ${blurr ? "blur-sm" : "blur-none"}`}
                     onClick={() => {
