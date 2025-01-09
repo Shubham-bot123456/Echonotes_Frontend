@@ -4,12 +4,16 @@ import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setJwt } from "./redux/JwtSlice";
 import Cookies from "universal-cookie";
+import { FaEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 export default function LoginPage({ setShowSearchAndLogout }) {
   const cookie = new Cookies();
   const dispatcher = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -53,7 +57,10 @@ export default function LoginPage({ setShowSearchAndLogout }) {
   };
   return (
     <div className="h-screen flex justify-evenly fixed top-0 left-0 w-full">
-      <form onSubmit={onSubmit} className="md:flex m-auto border-2 rounded-md shadow-2xl overflow-hidden">
+      <form
+        onSubmit={onSubmit}
+        className="md:flex m-auto border-2 rounded-md shadow-2xl overflow-hidden"
+      >
         <div className="flex flex-col px-8 py-12 gap-6">
           <label className="input input-bordered flex items-center gap-2 h-12 w-full">
             <svg
@@ -70,7 +77,7 @@ export default function LoginPage({ setShowSearchAndLogout }) {
               className="flex-1 h-full px-4 input-lg border-0 outline-none"
             ></input>
           </label>
-          <label className="input input-bordered flex items-center gap-2 h-12 w-full">
+          <label className="relative input input-bordered flex items-center gap-2 h-12 w-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -87,8 +94,19 @@ export default function LoginPage({ setShowSearchAndLogout }) {
               onChange={(event) => setPassword(event.target.value)}
               placeholder="password"
               className="flex-1 h-full px-4 input-lg border-0 outline-none "
-              type="password"
+              type={`${showPassword ? "text" : "password"}`}
             ></input>
+            {!showPassword ? (
+              <FaEye
+                className="absolute top-4 right-4 text-md"
+                onClick={() => setShowPassword(true)}
+              ></FaEye>
+            ) : (
+              <FaRegEyeSlash
+                className="absolute top-4 right-4 text-md"
+                onClick={() => setShowPassword(false)}
+              ></FaRegEyeSlash>
+            )}
           </label>
           <div className="flex">
             <p className="text-sm text-slate-600">haven't registered please </p>
