@@ -77,7 +77,7 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
               onChange={(event) => setPassword(event.target.value)}
               placeholder="password"
               className="flex-1 h-full px-4 input-lg border-0 outline-none "
-              type="password"
+              type={`${showPassword ? "text" : "password"}`}
             ></input>
             {!showPassword ? (
               <FaEye
