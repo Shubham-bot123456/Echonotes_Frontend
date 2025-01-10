@@ -3,6 +3,7 @@ import axios from "axios";
 import {useNavigate} from "react-router";
 import Cookies from "universal-cookie";
 import {FaEye, FaRegEyeSlash} from "react-icons/fa";
+import {motion, AnimatePresence} from "framer-motion";
 
 export default function RegisterPage({setShowSearchAndLogout}) {
     const [username, setUsername] = useState("");
@@ -47,9 +48,25 @@ export default function RegisterPage({setShowSearchAndLogout}) {
     };
     return (
         <div className="h-screen flex justify-evenly fixed top-0 left-0 w-full">
+            <AnimatePresence>
             {loading ?
                 <span className="fixed top-[50%] left-[50%] loading loading-spinner loading-lg mx-auto"></span> :
-                <div className="md:flex m-auto border-2 rounded-md shadow-2xl overflow-hidden">
+                <motion.div className="md:flex m-auto border-2 rounded-md shadow-2xl overflow-hidden"
+                     initial={{
+                         opacity: 0,
+                         scale: 0.2,
+                         translateY: 200,
+                     }}
+                     animate={{
+                         opacity:1,
+                         scale: 1,
+                         translateY: 0,
+
+                     }}
+                     transition={{
+                         duration : 0.4,
+                     }}
+                >
                     <section className=" flex flex-col px-8 py-12 gap-6">
                         <label className="input input-bordered flex items-center gap-2 h-12 w-full">
                             <svg
@@ -123,7 +140,8 @@ export default function RegisterPage({setShowSearchAndLogout}) {
                     >
                         REGISTER
                     </button>
-                </div>}
+                </motion.div>}
+            </AnimatePresence>
         </div>
     );
 }
