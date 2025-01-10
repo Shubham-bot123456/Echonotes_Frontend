@@ -13,6 +13,7 @@ import { setJwt } from "./redux/JwtSlice";
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineGroups } from "react-icons/md";
 import { MdOutlinePeople } from "react-icons/md";
+import {motion} from "motion/react";
 
 import { setRefresh } from "./redux/Refresh";
 import Cookies from "universal-cookie";
@@ -228,8 +229,23 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
 
               {bookList.map((book) => {
                 return (
-                  <div
-                    id="card"
+                    // will animate the card
+
+                  <motion.div
+                   initial={{
+
+                     opacity:0,
+                   }}
+                   animate={{
+
+                     opacity:1,
+                   }}
+                   transition={{
+                     duration:1,
+                     ease: "easeIn"
+                   }}
+
+                   id="card"
                     className={`card card-compact bg-base-100 w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[22vw]  h-[120px] shadow-2xl rounded-lg  transition-all ${
                       showPreview ? "blur-sm" : "blur-none"
                     } ${blurr ? "blur-sm" : "blur-none"}`}
@@ -305,7 +321,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
@@ -316,7 +332,4 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   );
 };
 
-function addition(a, b) {
-  console.log("addition is " + (a + b));
-}
 export default MainComponent;
