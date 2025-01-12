@@ -38,7 +38,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const cookie = new Cookies();
 
   useEffect(() => {
-    // loadBooks();
+    //loadBooks();
     setShowSearchAndLogout(true);
     let user = jwtDecode(cookie.get("authorization"));
     dispatcher(setUser(user.sub));
@@ -213,14 +213,14 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                 ""
               )}
 
-              {bookList.map((book) => {
+              {bookList.map((book, index) => {
                 return (
                   // will animate the card
 
                   <motion.div
                     initial={{
                       opacity: 0,
-                      scale: 0.2,
+                      scale: 0.4,
                       translateY: 200,
                     }}
                     animate={{
@@ -229,8 +229,10 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                       translateY: 0,
                     }}
                     transition={{
+                      delay: `${index / 5}`,
                       duration: 0.4,
-                      type: "keyframes",
+                      type: "tween",
+                      ease: "easeInOut",
                     }}
                     id="card"
                     className={`card card-compact bg-base-100 w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[22vw]  h-[120px] shadow-2xl rounded-lg  transition-all ${
