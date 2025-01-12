@@ -1,6 +1,6 @@
 import AddModal from "./AddModal";
 import UpdateModal from "./UpdateModal";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { CiTimer } from "react-icons/ci";
 import ShareModal from "./ShareModal";
@@ -11,8 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/UserSlice";
 import { setJwt } from "./redux/JwtSlice";
 import { MdDeleteOutline } from "react-icons/md";
-import { MdOutlineGroups } from "react-icons/md";
-import { MdOutlinePeople } from "react-icons/md";
 import { motion } from "motion/react";
 
 import { setRefresh } from "./redux/Refresh";
@@ -27,6 +25,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const [previewText, setPreviewText] = useState("");
   // loading attributes.
   const [loading, setLoading] = useState(false);
+
   const [blurr, setBlurr] = useState(false);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -39,7 +38,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const cookie = new Cookies();
 
   useEffect(() => {
-    loadBooks();
+    // loadBooks();
     setShowSearchAndLogout(true);
     let user = jwtDecode(cookie.get("authorization"));
     dispatcher(setUser(user.sub));
