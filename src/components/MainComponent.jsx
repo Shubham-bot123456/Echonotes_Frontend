@@ -20,6 +20,7 @@ import { jwtDecode } from "jwt-decode";
 
 const MainComponent = ({ search, setShowSearchAndLogout }) => {
   const [bookList, setBookList] = useState([]);
+  const [actionList, setActionList] = useState([]);
   // preview attributes.
   const [showPreview, setShowPreview] = useState(false);
   const [previewText, setPreviewText] = useState("");
@@ -45,6 +46,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   }, []);
 
   const addBook = async (description) => {
+    let prevTime = Date.now();
     setLoading(true);
     await axios({
       url: `${backendUrl}/todo/add`,
@@ -58,14 +60,23 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     })
       .then((res) => {
         console.log("axios response adding" + res.data);
+        let dummyId = Math.random();
+        bookList.push({
+          id: dummyId,
+          description: description,
+        });
+        actionList.push(dummyId);
       })
       .catch((err) => {
         console.log("error : " + err);
       });
 
-    await loadBooks();
+    loadBooks();
     navigate(`/main`);
     setLoading(false);
+    console.log(
+      "the time taken to add new note is : " + (Date.now() - prevTime)
+    );
   };
 
   const loadBooks = async () => {
@@ -81,6 +92,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       .then((res) => {
         tempArray = res.data.sort((a, b) => a.id - b.id);
         setBookList(tempArray);
+        setActionList([]);
       })
       .catch((err) => {
         console.log("error : " + err);
@@ -102,12 +114,14 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       },
       method: "DELETE",
     })
-      .then((res) => {})
+      .then((res) => {
+        actionList.push(bookId);
+      })
       .catch((err) => {
         console.log("error : " + err);
       });
 
-    await loadBooks();
+    loadBooks();
     setLoading(false);
     console.log("delete action time : " + (Date.now() - prevTime));
   };
@@ -124,12 +138,13 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       data: book,
     })
       .then((res) => {
+        actionList.push(book.id);
         console.log("axios response from update " + JSON.stringify(res.data));
       })
       .catch((err) => {
         console.log("error : " + err);
       });
-    await loadBooks();
+    loadBooks();
     setLoading(false);
   };
 
@@ -237,7 +252,10 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                     id="card"
                     className={`card card-compact bg-base-100 w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[22vw]  h-[120px] shadow-2xl rounded-lg  transition-all ${
                       showPreview ? "blur-sm" : "blur-none"
-                    } ${blurr ? "blur-sm" : "blur-none"}`}
+                    } ${blurr ? "blur-sm" : "blur-none"}
+                      ${
+                        actionList.includes(book.id) ? "blur-sm" : "blur-none"
+                      }`}
                     onClick={() => {
                       setPreviewText(book.description);
                       setShowPreview(true);
