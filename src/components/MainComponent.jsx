@@ -128,9 +128,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   };
 
   const updateBook = async (book) => {
-    let temp = JSON.parse(JSON.stringify(actionList));
-    temp.push(book.id);
-    setActionList(temp);
+    setLoading(true);
     await axios({
       url: `${backendUrl}/todo/${book.id}`,
       headers: {
@@ -141,10 +139,12 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     })
       .then((res) => {
         console.log("axios response from update " + JSON.stringify(res.data));
+        actionList.push(book.id);
       })
       .catch((err) => {
         console.log("error : " + err);
       });
+    setLoading(false);
     loadBooks();
   };
 
@@ -297,6 +297,9 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                           <ul
                             tabIndex={0}
                             className=" dropdown-content menu dropdown-end bg-base-100 rounded-lg z-[1] w-25 p-2 shadow-2xl "
+                            onClick={(e) => {
+                              e.stopPropagation();
+                            }}
                           >
                             <li>
                               <div>
