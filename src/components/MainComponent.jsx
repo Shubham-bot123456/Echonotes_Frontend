@@ -106,7 +106,9 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
   };
   const deleteUser = async (bookId) => {
     let prevTime = Date.now();
-    setLoading(true);
+    let temp = JSON.parse(JSON.stringify(actionList));
+    temp.push(bookId);
+    setActionList(temp);
     await axios({
       url: `${backendUrl}/todo/${bookId}`,
       headers: {
@@ -115,20 +117,20 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       method: "DELETE",
     })
       .then((res) => {
-        actionList.push(bookId);
+        console.log("deleted the note with id : " + bookId);
       })
       .catch((err) => {
         console.log("error : " + err);
       });
 
     loadBooks();
-    setLoading(false);
     console.log("delete action time : " + (Date.now() - prevTime));
   };
 
   const updateBook = async (book) => {
-    setLoading(true);
-    let id = book.id;
+    let temp = JSON.parse(JSON.stringify(actionList));
+    temp.push(book.id);
+    setActionList(temp);
     await axios({
       url: `${backendUrl}/todo/${book.id}`,
       headers: {
@@ -138,14 +140,12 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
       data: book,
     })
       .then((res) => {
-        actionList.push(book.id);
         console.log("axios response from update " + JSON.stringify(res.data));
       })
       .catch((err) => {
         console.log("error : " + err);
       });
     loadBooks();
-    setLoading(false);
   };
 
   const shareBook = async (calledUser, book) => {

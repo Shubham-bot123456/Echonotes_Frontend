@@ -64,7 +64,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
       const cookie = new Cookies();
       if (showSearchAndLogout === false) return;
       let avatarName = "";
-      await axios({
+      axios({
         url: `${backendUrl}/todo/getAvatar`,
         method: "GET",
         headers: {
@@ -73,13 +73,12 @@ export default function Header({ setsearch, showSearchAndLogout }) {
       })
         .then((res) => {
           avatarName = res.data;
+          setAvatar(avatarNameToImageFunction(avatarName));
           console.log("avatar is " + avatarName);
         })
         .catch((err) => {
           console.error("Error while fetching avatar name for the user");
         });
-
-      setAvatar(avatarNameToImageFunction(avatarName));
     })();
   }, [refresh, showSearchAndLogout]);
 
