@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/UserSlice";
 import { setJwt } from "./redux/JwtSlice";
 import { MdDeleteOutline } from "react-icons/md";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 
 import { setRefresh } from "./redux/Refresh";
 import Cookies from "universal-cookie";
@@ -207,137 +207,169 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
 
   return (
     <div>
-      {loading ? (
-        //loading html will come here !
-        <span className="fixed top-[50%] left-[50%] loading loading-spinner loading-lg mx-auto"></span>
-      ) : (
-        <div className="flex justify-evenly">
-          <AddModal addBook={addBook}></AddModal>
-          {bookList.length == 0 ? (
-            <p className="m-auto">
-              You have no notes ! Please create one by tapping add !
-            </p>
-          ) : (
-            <div className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4 bg-green-500`">
-              {showPreview ? (
-                <Preview
-                  description={previewText}
-                  setShowPreview={setShowPreview}
-                ></Preview>
-              ) : (
-                ""
-              )}
+      <AnimatePresence>
+        {loading ? (
+          //loading html will come here !
+          //   <span className="fixed top-[50%] left-[50%] loading loading-spinner loading-lg mx-auto"></span>
+          <div className="fixed top-0 left-0 w-full h-screen flex justify-evenly">
+            <motion.div
+              initial={{
+                scale: 0.2,
+                opacity: 0,
+                translateY: 200,
+              }}
+              animate={{
+                scale: 1,
+                opacity: 1,
+                translateY: 0,
+              }}
+              exit={{
+                scale: 1.5,
+                opacity: 0,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeInOut",
+              }}
+              className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full gap-4 p-20"
+            >
+              <div className="skeleton h-28 w-full rounded-lg"></div>
+              <div className="skeleton h-28 w-full rounded-lg"></div>
+              <div className="skeleton h-28 w-full rounded-lg"></div>
+              <div className="skeleton h-28 w-full rounded-lg"></div>
+              <div className="skeleton h-28 w-full rounded-lg"></div>
+              <div className="skeleton h-28 w-full rounded-lg"></div>
+            </motion.div>
+          </div>
+        ) : (
+          <div className="flex justify-evenly">
+            <AddModal addBook={addBook}></AddModal>
+            {bookList.length == 0 ? (
+              <p className="m-auto">
+                You have no notes ! Please create one by tapping add !
+              </p>
+            ) : (
+              <div className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4 bg-green-500`">
+                {showPreview ? (
+                  <Preview
+                    description={previewText}
+                    setShowPreview={setShowPreview}
+                  ></Preview>
+                ) : (
+                  ""
+                )}
 
-              {bookList.map((book, index) => {
-                return (
-                  // will animate the card
+                {bookList.map((book, index) => {
+                  return (
+                    // will animate the card
 
-                  <motion.div
-                    initial={{
-                      opacity: 0,
-                      scale: 0.4,
-                      translateY: 200,
-                    }}
-                    animate={{
-                      opacity: [0, 0.2, 0.4, 0.6, 0.8, 1],
-                      scale: [0, 0.2, 0.4, 0.6, 0.8, 1],
-                      translateY: 0,
-                    }}
-                    transition={{
-                      delay: `${index / 5}`,
-                      duration: 0.4,
-                      type: "tween",
-                      ease: "easeInOut",
-                    }}
-                    id="card"
-                    className={`card card-compact bg-base-100 w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[22vw]  h-[120px] shadow-2xl rounded-lg  transition-all ${
-                      showPreview ? "blur-sm" : "blur-none"
-                    } ${blurr ? "blur-sm" : "blur-none"}
+                    <motion.div
+                      initial={{
+                        opacity: 0,
+                        scale: 0.4,
+                        translateY: 200,
+                      }}
+                      animate={{
+                        opacity: [0, 0.2, 0.4, 0.6, 0.8, 1],
+                        scale: [0, 0.2, 0.4, 0.6, 0.8, 1],
+                        translateY: 0,
+                      }}
+                      transition={{
+                        delay: `${index / 5}`,
+                        duration: 0.4,
+                        type: "tween",
+                        ease: "easeInOut",
+                      }}
+                      id="card"
+                      className={`card card-compact bg-base-100 w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[22vw]  h-[120px] shadow-2xl rounded-lg  transition-all ${
+                        showPreview ? "blur-sm" : "blur-none"
+                      } ${blurr ? "blur-sm" : "blur-none"}
                       ${
                         actionList.includes(book.id) ? "blur-sm" : "blur-none"
                       }`}
-                    onClick={() => {
-                      setPreviewText(book.description);
-                      setShowPreview(true);
-                    }}
-                    key={book.id}
-                  >
-                    {book.users != null && book.users.length > 1 ? (
-                      <UserModal
-                        users={book.users}
-                        bookId={book.id}
-                      ></UserModal>
-                    ) : (
-                      ""
-                    )}
+                      onClick={() => {
+                        setPreviewText(book.description);
+                        setShowPreview(true);
+                      }}
+                      key={book.id}
+                    >
+                      {book.users != null && book.users.length > 1 ? (
+                        <UserModal
+                          users={book.users}
+                          bookId={book.id}
+                        ></UserModal>
+                      ) : (
+                        ""
+                      )}
 
-                    <div className="card-body ">
-                      <p className="cursor-pointer">
-                        {trimDescription(book.description)}
-                      </p>
-                      <div className="card-actions justify-end">
-                        {/* created on updated on time  */}
-                        <section className="flex gap-1 absolute bottom-2 left-2">
-                          <CiTimer className="text-sm text-slate-800" />
-                          <p className="text-xs text-slate-500">
-                            {book.lastUpdatedOn != null
-                              ? new Date(book.lastUpdatedOn).toDateString()
-                              : ""}
-                          </p>
-                        </section>
-                        <div className="dropdown dropdown-end">
-                          <div tabIndex={0} className="list-none">
-                            <BsThreeDotsVertical
-                              className="text-2xl hover:scale-105"
+                      <div className="card-body ">
+                        <p className="cursor-pointer">
+                          {trimDescription(book.description)}
+                        </p>
+                        <div className="card-actions justify-end">
+                          {/* created on updated on time  */}
+                          <section className="flex gap-1 absolute bottom-2 left-2">
+                            <CiTimer className="text-sm text-slate-800" />
+                            <p className="text-xs text-slate-500">
+                              {book.lastUpdatedOn != null
+                                ? new Date(book.lastUpdatedOn).toDateString()
+                                : ""}
+                            </p>
+                          </section>
+                          <div className="dropdown dropdown-end">
+                            <div tabIndex={0} className="list-none">
+                              <BsThreeDotsVertical
+                                className="text-2xl hover:scale-105"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                }}
+                              ></BsThreeDotsVertical>
+                            </div>
+                            <ul
+                              tabIndex={0}
+                              className=" dropdown-content menu dropdown-end bg-base-100 rounded-lg z-[1] w-25 p-2 shadow-2xl "
                               onClick={(e) => {
                                 e.stopPropagation();
                               }}
-                            ></BsThreeDotsVertical>
+                            >
+                              <li>
+                                <div>
+                                  <MdDeleteOutline
+                                    className="text-black text-lg"
+                                    onClick={(e) => {
+                                      deleteUser(book.id);
+                                      e.stopPropagation();
+                                    }}
+                                  >
+                                    delete
+                                  </MdDeleteOutline>
+                                </div>
+                              </li>
+                              <li>
+                                <UpdateModal
+                                  updateBook={updateBook}
+                                  book={book}
+                                ></UpdateModal>
+                              </li>
+                              <li>
+                                <ShareModal
+                                  shareBook={shareBook}
+                                  book={book}
+                                  setBlurr={setBlurr}
+                                ></ShareModal>
+                              </li>
+                            </ul>
                           </div>
-                          <ul
-                            tabIndex={0}
-                            className=" dropdown-content menu dropdown-end bg-base-100 rounded-lg z-[1] w-25 p-2 shadow-2xl "
-                            onClick={(e) => {
-                              e.stopPropagation();
-                            }}
-                          >
-                            <li>
-                              <div>
-                                <MdDeleteOutline
-                                  className="text-black text-lg"
-                                  onClick={(e) => {
-                                    deleteUser(book.id);
-                                    e.stopPropagation();
-                                  }}
-                                >
-                                  delete
-                                </MdDeleteOutline>
-                              </div>
-                            </li>
-                            <li>
-                              <UpdateModal
-                                updateBook={updateBook}
-                                book={book}
-                              ></UpdateModal>
-                            </li>
-                            <li>
-                              <ShareModal
-                                shareBook={shareBook}
-                                book={book}
-                                setBlurr={setBlurr}
-                              ></ShareModal>
-                            </li>
-                          </ul>
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      )}{" "}
+                    </motion.div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}{" "}
+      </AnimatePresence>
     </div>
   );
 };
