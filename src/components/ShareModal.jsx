@@ -31,7 +31,7 @@ export default function ShareModal({ shareBook, book, setBlurr }) {
         animation.start({
             scale: 0,
             opacity: 0,
-            translateY: 200,
+
             transition: {
                 duration: 0.4,
             },
