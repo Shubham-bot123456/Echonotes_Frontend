@@ -274,6 +274,11 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                         scale: [0, 0.2, 0.4, 0.6, 0.8, 1],
                         translateY: 0,
                       }}
+                      exit={{
+                        opacity: 0,
+                        scale: 0,
+                        translateY: 200,
+                      }}
                       transition={{
                         delay: `${index / 5}`,
                         duration: 0.4,

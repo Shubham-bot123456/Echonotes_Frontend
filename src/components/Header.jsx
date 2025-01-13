@@ -20,6 +20,7 @@ import {
   MdOutlineKeyboardDoubleArrowDown,
   MdOutlineKeyboardDoubleArrowUp,
 } from "react-icons/md";
+import echonote_icon from "../iconimages/echonotes icon.png";
 import avatarNameToImageFunction from "./AvatarImageHelper";
 export default function Header({ setsearch, showSearchAndLogout }) {
   const [localSearch, setLocalSearch] = useState("");
@@ -86,8 +87,12 @@ export default function Header({ setsearch, showSearchAndLogout }) {
   return (
     <div className="w-full fixed top-0 left-0 flex justify-between px-4 md:px-8 py-4 shadow-lg z-50 bg-white">
       <section className="flex gap-1">
-        <h1 className="text-semibold text-lg">EchoNotes</h1>
-        <BiSolidLeaf className="text-3xl"></BiSolidLeaf>
+        <div className="overflow-hidden w-[110px] h-[32px] relative items-center">
+          <img
+            className="absolute top-[-3px] left-[-5px] w-[98px] h-[38px] m-auto"
+            src={echonote_icon}
+          />
+        </div>
       </section>
       {showSearchAndLogout ? (
         <section className="flex gap-4">
