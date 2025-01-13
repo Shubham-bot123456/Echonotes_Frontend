@@ -152,7 +152,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
     if (calledUser === "") {
       return;
     }
-
+    actionList.push(book.id);
     await axios({
       url: `${backendUrl}/todo/share-book`,
       headers: {
@@ -168,6 +168,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
         console.log("error : " + err);
         throw err;
       });
+    loadBooks();
   };
 
   useEffect(() => {

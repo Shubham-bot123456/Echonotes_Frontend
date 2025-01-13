@@ -88,22 +88,9 @@ export default function ShareModal({ shareBook, book, setBlurr }) {
                                 type="button"
                                 onClick={() => {
                                     console.log("getting into share note method");
-                                    try {
-                                        shareBook(calledUser, book);
-                                        toast("Note shared!", {
-                                            position: "top-center",
-                                            autoClose: 5000,
-                                            theme: "light",
-                                            transition: Bounce,
-                                        });
-                                    } catch (err) {
-                                        toast("User not found!", {
-                                            position: "top-center",
-                                            autoClose: 5000,
-                                            theme: "light",
-                                            transition: Bounce,
-                                        });
-                                    }
+                                    shareBook(calledUser, book);
+                                    setBlurr(false);
+                                    document.getElementById(`shareModal${book.id}`).close();
                                 }}
                                 className="bg-black text-white font-medium rounded-md px-4 py-2 transition duration-200"
                             >
