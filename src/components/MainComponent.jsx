@@ -231,7 +231,7 @@ const MainComponent = ({ search, setShowSearchAndLogout }) => {
                 duration: 0.4,
                 ease: "easeInOut",
               }}
-              className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full gap-4 p-20"
+              className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full gap-4 py-20 md:px-20 px-16"
             >
               <div className="skeleton h-28 w-full rounded-lg"></div>
               <div className="skeleton h-28 w-full rounded-lg"></div>
