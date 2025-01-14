@@ -173,7 +173,7 @@ export default function Header({setsearch, showSearchAndLogout}) {
                         ) : (
                             ""
                         )}
-                        <div className="relative">
+                        <div className="relative overflow-hidden">
                             <input
                                 placeholder="search .."
                                 className="input input-sm w-[28vw] md:w-[140px]  relative border-2 border-black"
