@@ -185,7 +185,7 @@ const MainComponent = ({search, setShowSearchAndLogout}) => {
             searchList.map((item) => {
                 let filteredArray = new Array();
                 tempArray.map((i) => {
-                    if (i.description.includes(item)) {
+                    if (i.description.toLowerCase().includes(item.toLowerCase())) {
                         filteredArray.push(i);
                     }
                 });
@@ -205,6 +205,7 @@ const MainComponent = ({search, setShowSearchAndLogout}) => {
         if (description.length <= 20) return description;
         return description.substring(0, 21) + " .... ";
     };
+
 
     return (
         <div>
@@ -303,7 +304,8 @@ const MainComponent = ({search, setShowSearchAndLogout}) => {
                                             {actionList.includes(book.id) ?
                                                 <div
                                                     className="w-full h-full flex justify-evenly absolute top-0 left-0">
-                                                    <span className="m-auto loading loading-ring loading-lg blur-0"></span>
+                                                    <span
+                                                        className="m-auto loading loading-ring loading-lg blur-0"></span>
                                                 </div> : ""}
 
                                             {
