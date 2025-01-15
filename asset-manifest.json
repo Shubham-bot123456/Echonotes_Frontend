@@ -1,8 +1,13 @@
 {
   "files": {
-    "main.css": "/Echonotes_Frontend/static/css/main.1692f103.css",
-    "main.js": "/Echonotes_Frontend/static/js/main.2784d710.js",
+    "main.css": "/Echonotes_Frontend/static/css/main.d029e29c.css",
+    "main.js": "/Echonotes_Frontend/static/js/main.c8f067c1.js",
     "static/js/453.2a82e7ac.chunk.js": "/Echonotes_Frontend/static/js/453.2a82e7ac.chunk.js",
+    "static/media/blackandwithbackground.jpg": "/Echonotes_Frontend/static/media/blackandwithbackground.1746cc6d14d5ff6295c3.jpg",
+    "static/media/somethingnewbackground.jpg": "/Echonotes_Frontend/static/media/somethingnewbackground.5aee9e493e15f12eaeaa.jpg",
+    "static/media/mainbackground.jpg": "/Echonotes_Frontend/static/media/mainbackground.c2dfce0e1453f3161b70.jpg",
+    "static/media/echnotes_background image.jpg": "/Echonotes_Frontend/static/media/echnotes_background image.162d98d7c9ba39b51bd1.jpg",
+    "static/media/doodlewallpaper.jpg": "/Echonotes_Frontend/static/media/doodlewallpaper.01705941a4aee1780727.jpg",
     "static/media/echonotes icon.png": "/Echonotes_Frontend/static/media/echonotes icon.950ab9493a4eedd87c62.png",
     "static/media/gamer.png": "/Echonotes_Frontend/static/media/gamer.3c37a790f9676542b372.png",
     "static/media/man.png": "/Echonotes_Frontend/static/media/man.6f678b05521261910525.png",
@@ -11,12 +16,12 @@
     "static/media/panda.png": "/Echonotes_Frontend/static/media/panda.0253ba0e4ab6e6b77c68.png",
     "static/media/cat.png": "/Echonotes_Frontend/static/media/cat.077086a0654634be593c.png",
     "index.html": "/Echonotes_Frontend/index.html",
-    "main.1692f103.css.map": "/Echonotes_Frontend/static/css/main.1692f103.css.map",
-    "main.2784d710.js.map": "/Echonotes_Frontend/static/js/main.2784d710.js.map",
+    "main.d029e29c.css.map": "/Echonotes_Frontend/static/css/main.d029e29c.css.map",
+    "main.c8f067c1.js.map": "/Echonotes_Frontend/static/js/main.c8f067c1.js.map",
     "453.2a82e7ac.chunk.js.map": "/Echonotes_Frontend/static/js/453.2a82e7ac.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1692f103.css",
-    "static/js/main.2784d710.js"
+    "static/css/main.d029e29c.css",
+    "static/js/main.c8f067c1.js"
   ]
 }
