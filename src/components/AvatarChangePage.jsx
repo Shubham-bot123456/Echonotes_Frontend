@@ -48,7 +48,7 @@ export default function AvatarChangePage() {
     <div className="fixed top-0 left-0 w-full h-screen flex justify-evenly">
       <AnimatePresence>
         <motion.div
-          className="p-5 m-auto w-[80vw] h-[80vh]  rounded-xl shadow-2xl relative"
+          className="bg-white p-5 m-auto w-[80vw] h-[80vh]  rounded-xl shadow-2xl relative"
           initial={{
             opacity: 0,
             scale: 0.4,

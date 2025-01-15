@@ -288,8 +288,9 @@ const MainComponent = ({search, setShowSearchAndLogout}) => {
                                                 type: "tween",
                                                 ease: "easeInOut",
                                             }}
+
                                             id="card"
-                                            className={`relative card card-compact bg-base-100 w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[22vw]  h-[120px] shadow-2xl rounded-lg  transition-all ${
+                                            className={`hover:scale-105 relative card card-compact bg-base-100 w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[22vw]  h-[120px] shadow-2xl rounded-lg  transition-all ${
                                                 showPreview ? "blur-sm" : "blur-none"
                                             } ${blurr ? "blur-sm" : "blur-none"}
                       ${

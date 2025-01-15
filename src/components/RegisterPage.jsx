@@ -51,7 +51,7 @@ export default function RegisterPage({setShowSearchAndLogout}) {
             <AnimatePresence>
             {loading ?
                 <span className="fixed top-[50%] left-[50%] loading loading-spinner loading-lg mx-auto"></span> :
-                <motion.div className="md:flex m-auto border-2 rounded-md shadow-2xl overflow-hidden"
+                <motion.div className="bg-white  md:flex m-auto border-2 rounded-md shadow-2xl overflow-hidden"
                      initial={{
                          opacity: 0,
                          scale: 0.2,

@@ -79,7 +79,7 @@ export default function LoginPage({ setShowSearchAndLogout }) {
               duration : 0.4,
             }}
             onSubmit={onSubmit}
-            className="md:flex m-auto border-2 rounded-md shadow-2xl overflow-hidden"
+            className="md:flex m-auto border-2 rounded-md shadow-2xl overflow-hidden bg-white"
         >
           <div className="flex flex-col px-8 py-12 gap-6">
             <label className="input input-bordered flex items-center gap-2 h-12 w-full">
@@ -158,3 +158,4 @@ export default function LoginPage({ setShowSearchAndLogout }) {
       </div>
   );
 }
+
