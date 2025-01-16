@@ -8,11 +8,13 @@ import {BsThreeDotsVertical} from "react-icons/bs";
 import Preview from "./Preview";
 import {useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
+
 import {setUser} from "./redux/UserSlice";
 import {setJwt} from "./redux/JwtSlice";
 import {MdDeleteOutline} from "react-icons/md";
 import {AnimatePresence, motion} from "motion/react";
-
+import Lottie  from "lottie-react";
+import EmptyListAnimation from "../iconimages/lottie_emptylist_json.json";
 import {setRefresh} from "./redux/Refresh";
 import Cookies from "universal-cookie";
 import UserModal from "./UsersModal";
@@ -247,12 +249,10 @@ const MainComponent = ({search, setShowSearchAndLogout}) => {
                     <div className="flex justify-evenly">
                         <AddModal addBook={addBook}></AddModal>
                         {bookList.length == 0 ? (
-                            <p className="m-auto">
-                                You have no notes ! Please create one by tapping add !
-                            </p>
+                            <Lottie className="w-[200px] h-[400px] m-auto border-black border-2"
+                                    animationData={EmptyListAnimation} loop={true}></Lottie>
                         ) : (
-                            <div
-                                className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4 bg-green-500`">
+                            <div className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4 bg-green-500`">
                                 {showPreview ? (
                                     <Preview
                                         description={previewText}
