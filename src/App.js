@@ -19,10 +19,10 @@ function App() {
     return (
         <>
             <div className="overflow w-full h-full fixed top-0 left-0 bg-green-100 grid xl:grid-cols-2 grid-cols-1">
-                <img src={mainbackground} className="opacity-20 w-[1100px] h-[563px] sm:w-full md:h-full"/>
-                <img src={mainbackground} className="opacity-20 w-[1100px] h-[563px] sm:w-full md:h-full"/>
-                <img src={mainbackground} className="opacity-20 w-[1100px] h-[563px] sm:w-full md:h-full"/>
-                <img src={mainbackground} className="opacity-20 w-[1100px] h-[563px] sm:w-full md:h-full"/>
+                <img src={mainbackground} className="opacity-20 "/>
+                <img src={mainbackground} className="opacity-20 "/>
+                <img src={mainbackground} className="opacity-20 "/>
+                <img src={mainbackground} className="opacity-20 "/>
             </div>
             <BrowserRouter basename="/Echonotes_Frontend">
                 <Header
@@ -66,6 +66,6 @@ function App() {
             {/* <AvatarChangePage></AvatarChangePage> */}
         </>
     );
-}
 
+}
 export default App;
