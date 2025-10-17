@@ -9,7 +9,7 @@ import { Toaster, toast } from "react-hot-toast";
 export default function RegisterPage({ setShowSearchAndLogout }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -18,10 +18,17 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
     setShowSearchAndLogout(false);
   }, []);
   const onSubmit = async () => {
+    setError("");
     // 1. fire register req
     // call maincomponent and pass jwt token to the main component
     let jwttoken = null;
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    if (username.length < 9 || password.length < 9) {
+      setError("length of username & password should be atleats 9");
+      setUsername("");
+      setPassword("");
+      return;
+    }
     setLoading(true);
     await axios({
       url: `${backendUrl}/generate/register`,
@@ -40,7 +47,7 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
       })
       .catch((err) => {
         toast.error("Please try again !");
-        setError(true);
+        setError("user already exists please login !");
         console.log("ERROR occured" + err);
       });
     setLoading(false);
@@ -120,11 +127,9 @@ export default function RegisterPage({ setShowSearchAndLogout }) {
                 )}
               </label>
 
-              {error ? (
+              {error.length > 0 ? (
                 <div className="flex">
-                  <p className="text-red-600 text-sm">
-                    user already exists please login !{" "}
-                  </p>
+                  <p className="text-red-600 text-sm">{error}</p>
                   <a
                     className="text-blue-600 text-sm hover:underline cursor-pointer ml-2"
                     onClick={() => {
