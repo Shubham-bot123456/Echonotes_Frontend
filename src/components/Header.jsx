@@ -222,6 +222,7 @@ export default function Header({ setsearch, showSearchAndLogout }) {
                       scale: 0,
                       translateY: -20,
                     });
+                    setDropDownStatus(true);
                   } else {
                     animation.start({
                       opacity: 1,
@@ -231,8 +232,8 @@ export default function Header({ setsearch, showSearchAndLogout }) {
                         duration: 0.4,
                       },
                     });
+                    setDropDownStatus(false);
                   }
-                  setDropDownStatus(!dropDownStatus);
                 }}
               >
                 {avatar}
