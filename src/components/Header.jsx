@@ -36,10 +36,9 @@ export default function Header({ setsearch, showSearchAndLogout }) {
   const [searchListOpen, setSearchListOpen] = useState(false);
   const dispatcher = useDispatch();
   const cookie = new Cookies();
-  const animation = useAnimation();
   const searchAnimation = useAnimation();
   const searchButtonAnimation = useAnimation();
-  const [dropDownStatus, setDropDownStatus] = useState(true);
+  const [dropDownStatus, setDropDownStatus] = useState(false);
 
   // useEffect(() => {
   //   (async () => {
@@ -210,69 +209,48 @@ export default function Header({ setsearch, showSearchAndLogout }) {
               </motion.button>
             </div>
           </div>
-          <details className="dropdown dropdown-end">
-            <summary className="list-none">
+          <div className="dropdown dropdown-end relative">
+            <div>
               <div
                 className="w-8 bg-green-500 rounded-full overflow-hidden"
                 type="button"
                 onClick={() => {
-                  if (!dropDownStatus) {
-                    animation.start({
-                      opacity: 0,
-                      scale: 0,
-                      translateY: -20,
-                    });
-                    setDropDownStatus(true);
-                  } else {
-                    animation.start({
-                      opacity: 1,
-                      scale: 1,
-                      translateY: 0,
-                      transition: {
-                        duration: 0.4,
-                      },
-                    });
-                    setDropDownStatus(false);
-                  }
+                  setDropDownStatus(!dropDownStatus);
                 }}
               >
                 {avatar}
               </div>
-            </summary>
-            <motion.ul
-              initial={{
-                opacity: [0, 0.2, 0.2, 0.4, 1],
-                scale: 0.2,
-                translateY: -20,
-              }}
-              animate={animation}
-              className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
-            >
-              <li>
-                <div className="flex justify-between">
-                  <p>hi {userName}!</p>
-                  <div className="p-1 rounded-full bg-gray-800">
-                    <CgLogOff
-                      className="text-2xl hover:scale-105 text-white"
-                      onClick={() => {
-                        navigate("/login");
-                        cookie.remove("authorization");
-                      }}
-                    ></CgLogOff>
+            </div>
+            {dropDownStatus ? (
+              <ul className="absolute top-11 right-2 menu bg-base-100 rounded-box z-50 w-52 p-2 shadow">
+                <li>
+                  <div className="flex justify-between">
+                    <p>hi {userName}!</p>
+                    <div className="p-1 rounded-full bg-gray-800">
+                      <CgLogOff
+                        className="text-2xl hover:scale-105 text-white"
+                        onClick={() => {
+                          navigate("/login");
+                          cookie.remove("authorization");
+                        }}
+                      ></CgLogOff>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    navigate("/avatar");
-                  }}
-                >
-                  Change Avatar
-                </button>
-              </li>
-            </motion.ul>
-          </details>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      navigate("/avatar");
+                    }}
+                  >
+                    Change Avatar
+                  </button>
+                </li>
+              </ul>
+            ) : (
+              ""
+            )}
+          </div>
         </section>
       ) : (
         ""
